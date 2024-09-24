@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -9,7 +10,7 @@ const Navbar = () => {
 
   const links = [
     { name: "Home", href: "#home" },
-    { name: "Poll", href: "#poll" },
+    { name: "Poll", href: "/poll" },
     { name: "Blogs", href: "#blogs" },
     { name: "About", href: "#about" },
     { name: "Contact", href: "#contact" },
@@ -25,15 +26,24 @@ const Navbar = () => {
 
           {/* Navbar Links for Desktop */}
           <div className="hidden md:flex space-x-8">
-            {links.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                className="text-white hover:text-yellow-300 transition duration-200 px-3 py-2 rounded-md text-sm font-medium"
-              >
-                {link.name}
-              </a>
-            ))}
+            <Link className="text-white hover:text-yellow-300 transition duration-200 px-3 py-2 rounded-md text-sm font-medium">
+              Home
+            </Link>
+            <Link
+              to="/poll"
+              className="text-white hover:text-yellow-300 transition duration-200 px-3 py-2 rounded-md text-sm font-medium"
+            >
+              Poll
+            </Link>
+            <Link className="text-white hover:text-yellow-300 transition duration-200 px-3 py-2 rounded-md text-sm font-medium">
+              About
+            </Link>{" "}
+            <Link className="text-white hover:text-yellow-300 transition duration-200 px-3 py-2 rounded-md text-sm font-medium">
+              Contact
+            </Link>{" "}
+            <Link className="text-white hover:text-yellow-300 transition duration-200 px-3 py-2 rounded-md text-sm font-medium">
+              Login
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}

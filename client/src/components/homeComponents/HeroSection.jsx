@@ -7,7 +7,7 @@ import "slick-carousel/slick/slick-theme.css";
 const slides = [
   {
     id: 1,
-    image: "https://via.placeholder.com/1920x600/ff7f7f/333333?text=Slide+1",
+    image: "https://via.placeholder.com/1920x600/7f7fff//333333?text=Slide+1",
     title: "Welcome to My Website",
     description: "This is the first slide description.",
   },
@@ -19,7 +19,7 @@ const slides = [
   },
   {
     id: 3,
-    image: "https://via.placeholder.com/1920x600/7fff7f/333333?text=Slide+3",
+    image: "https://via.placeholder.com/1920x600/7f7fff/333333?text=Slide+3",
     title: "Creative Ideas",
     description: "We bring your ideas to life.",
   },
@@ -33,7 +33,7 @@ const HeroSection = () => {
     slidesToShow: 1, // Show one slide at a time
     slidesToScroll: 1, // Scroll one slide at a time
     autoplay: true, // Enable autoplay
-    autoplaySpeed: 2000, // Autoplay speed (1 second)
+    autoplaySpeed: 3000, // Autoplay speed (1 second)
     rtl: true, // Right-to-left scrolling
   };
 
