@@ -7,19 +7,19 @@ import "slick-carousel/slick/slick-theme.css";
 const slides = [
   {
     id: 1,
-    image: "https://via.placeholder.com/1920x600/7f7fff//333333?text=Slide+1",
+    image: "https://cdn.pixabay.com/photo/2016/11/07/00/49/vote-1804596_960_720.jpg",
     title: "Welcome to My Website",
     description: "This is the first slide description.",
   },
   {
     id: 2,
-    image: "https://via.placeholder.com/1920x600/7f7fff/333333?text=Slide+2",
+    image: "https://cdn.pixabay.com/photo/2024/09/13/18/18/ai-generated-9045614_960_720.jpg",
     title: "Professional Design",
     description: "High-quality solutions for your needs.",
   },
   {
     id: 3,
-    image: "https://via.placeholder.com/1920x600/7f7fff/333333?text=Slide+3",
+    image: "https://plus.unsplash.com/premium_photo-1707146618842-8795617df062?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     title: "Creative Ideas",
     description: "We bring your ideas to life.",
   },

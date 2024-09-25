@@ -18,7 +18,7 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="bg-gradient-to-r from-indigo-500 to-purple-500 shadow-md">
+    <nav className="bg-blue-700 shadow-md">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Website Logo/Name */}
@@ -26,22 +26,22 @@ const Navbar = () => {
 
           {/* Navbar Links for Desktop */}
           <div className="hidden md:flex space-x-8">
-            <Link className="text-white hover:text-yellow-300 transition duration-200 px-3 py-2 rounded-md text-sm font-medium">
+            <Link className="text-white  hover:text-yellow-300 transition duration-200 px-3 py-2 rounded-md font-bold">
               Home
             </Link>
             <Link
               to="/poll"
-              className="text-white hover:text-yellow-300 transition duration-200 px-3 py-2 rounded-md text-sm font-medium"
+              className="text-white  hover:text-yellow-300 transition duration-200 px-3 py-2 rounded-md font-bold"
             >
               Poll
             </Link>
-            <Link className="text-white hover:text-yellow-300 transition duration-200 px-3 py-2 rounded-md text-sm font-medium">
+            <Link className="text-white  hover:text-yellow-300 transition duration-200 px-3 py-2 rounded-md font-bold">
               About
             </Link>{" "}
-            <Link className="text-white hover:text-yellow-300 transition duration-200 px-3 py-2 rounded-md text-sm font-medium">
+            <Link className="text-white  hover:text-yellow-300 transition duration-200 px-3 py-2 rounded-md font-bold">
               Contact
             </Link>{" "}
-            <Link className="text-white hover:text-yellow-300 transition duration-200 px-3 py-2 rounded-md text-sm font-medium">
+            <Link className="text-white  hover:text-yellow-300 transition duration-200 px-3 py-2 rounded-md font-bold">
               Login
             </Link>
           </div>
