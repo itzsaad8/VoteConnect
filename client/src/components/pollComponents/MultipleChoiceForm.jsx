@@ -57,7 +57,7 @@ const MultipleChoiceForm = () => {
         "http://localhost:5000/poll/add",
         payload
       );
-      // console.log(response);
+      console.log(response.data.body._id);
 
       if (response.data.success) {
         navigate("/created-poll", { state: { id: response.data.body._id } });

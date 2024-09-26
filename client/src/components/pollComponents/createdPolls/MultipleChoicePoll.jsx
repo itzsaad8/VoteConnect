@@ -8,6 +8,7 @@ export default function MultipleChoicePoll() {
   const [voterDetails, setVoterDetails] = useState(null); // Track voter details
   const [poll, setPoll] = useState([]); // Poll data state
   const [candidate, setCandidate] = useState([]);
+  const [allData, setAllData] = useState(null);
 
   // Dummy user details
   const userDetails = {
@@ -40,7 +41,7 @@ export default function MultipleChoicePoll() {
       const data = {
         userId: localStorage.getItem("vote_id"),
         pollId: id,
-        selectedCandidate: candidate,
+        selectedCandidate: option,
       };
       try {
         const response = await axios.post(
@@ -56,6 +57,22 @@ export default function MultipleChoicePoll() {
         console.error("Error fetching poll data:", error); // Log any error to the console
       }
     }
+
+    const fetchPollData = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:5000/poll/get/${id}`
+        );
+        setPoll(response.data);
+        // console.log("bb", poll);
+        // Assume poll data contains an initial votes array, if available
+        setVotes(response.data.body?.votes || [0, 0, 0, 0]); // Defaulting to 0 votes if not available
+      } catch (error) {
+        console.error("Error fetching poll data:", error); // Log any error to the console
+      }
+    };
+
+    fetchPollData();
   };
 
   // Calculate vote percentages
@@ -71,7 +88,7 @@ export default function MultipleChoicePoll() {
           `http://localhost:5000/poll/get/${id}`
         );
         setPoll(response.data);
-
+        // console.log("bb", poll);
         // Assume poll data contains an initial votes array, if available
         setVotes(response.data.body?.votes || [0, 0, 0, 0]); // Defaulting to 0 votes if not available
       } catch (error) {
@@ -81,6 +98,27 @@ export default function MultipleChoicePoll() {
 
     fetchPollData();
   }, [id]);
+  // Fetch poll data when the component mounts
+  useEffect(() => {
+    const fetchAllData = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:5000/poll/get-all-mcqs-details/${id}`
+        );
+        setAllData(response.data);
+        console.log("nn", allData?.body);
+
+        console.log(response);
+
+        // Assume poll data contains an initial votes array, if available
+        // setVotes(response.data.body?.votes || [0, 0, 0, 0]); // Defaulting to 0 votes if not available
+      } catch (error) {
+        console.error("Error fetching poll data:", error); // Log any error to the console
+      }
+    };
+
+    fetchAllData();
+  }, []);
 
   return (
     <>
@@ -88,15 +126,15 @@ export default function MultipleChoicePoll() {
         {/* Poll Card */}
         <div className="w-1/3 bg-white p-6 rounded-lg shadow-md border border-indigo-200">
           <h2 className="text-xl font-bold text-indigo-600 mb-4">
-            {poll.body && poll.body.title}
+            {poll?.body && poll?.body.title}
           </h2>
           <ul>
             {[
-              poll.body?.option_1,
-              poll.body?.option_2,
-              poll.body?.option_3,
-              poll.body?.option_4,
-            ].map((option, index) => (
+              poll?.body?.option_1,
+              poll?.body?.option_2,
+              poll?.body?.option_3,
+              poll?.body?.option_4,
+            ]?.map((option, index) => (
               <li key={index} className="mb-2">
                 <button
                   className={`w-full text-left py-2 px-4 ${
@@ -146,9 +184,15 @@ export default function MultipleChoicePoll() {
             Voter Details
           </h2>
           {voterDetails ? (
-            <div>
-              <p className="mb-2">Name: {voterDetails.name}</p>
-              <p className="mb-2">Email: {voterDetails.email}</p>
+            <div className="flex justify-between items-center">
+              Voter:{" "}
+              {allData?.body?.mcqsDetails &&
+                allData.body.mcqsDetails.length > 0 &&
+                allData.body.mcqsDetails[0]?.userId?.name}
+              {console.log("nbn", allData?.body?.mcqsDetails[0])}
+              Voted:{" "}
+              {allData?.body &&
+                allData?.body?.mcqsDetails[0]?.selectedCandidate}
             </div>
           ) : (
             <p className="text-gray-500">No voter details available.</p>
