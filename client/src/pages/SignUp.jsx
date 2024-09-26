@@ -25,7 +25,7 @@ export default function SignUp() {
         formData
       );
       console.log(response);
-      localStorage.setItem("vote_id", response.data.body._id);
+      localStorage.setItem("token", response.data.token);
       setSuccess("Signup successful!");
       setError("");
       console.log("Response:", response.data); // Handle response accordingly

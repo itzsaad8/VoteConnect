@@ -6,8 +6,11 @@ import "./App.css";
 import HomePage from "./pages/homePage/HomePage";
 import PollPage from "./pages/pollPage/PollPage";
 import Root from "./pages/Root";
-import MultipleChoicePoll from "./components/pollComponents/createdPolls/MultipleChoicePoll";
+// import MultipleChoicePoll from "./components/pollComponents/createdPolls/MultipleChoicePoll";
 import SignUp from "./pages/SignUp";
+// import Poll from "./components/pollComponents/createdPolls/Poll";
+// import MultipleChoicePoll from "./components/pollComponents/createdPolls/MultipleChoicePoll";
+import MyPollPage from "./pages/pollPage/MyPollPage";
 
 const router = createBrowserRouter([
   {
@@ -23,9 +26,10 @@ const router = createBrowserRouter([
         element: <PollPage />,
       },
       {
-        path: "/created-poll",
-        element: <MultipleChoicePoll />,
+        path: "/my-polls",
+        element: <MyPollPage />,
       },
+
       {
         path: "/signup",
         element: <SignUp />,
