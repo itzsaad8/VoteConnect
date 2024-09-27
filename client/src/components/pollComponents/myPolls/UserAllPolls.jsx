@@ -1,71 +1,92 @@
-import React from "react";
-import { useNavigate } from "react-router-dom"; // Assuming you're using react-router for navigation
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export default function UserAllPolls() {
   const navigate = useNavigate();
-
-  // Example poll data
-  const pollData = [
-    {
-      id: 1,
-      question: "What is your favorite programming language?",
-      options: ["JavaScript", "Python", "Java", "C++"],
-    },
-    {
-      id: 2,
-      question: "Which front-end framework do you prefer?",
-      options: ["React", "Vue", "Angular", "Svelte"],
-    },
-    {
-      id: 3,
-      question: "Which back-end framework do you use?",
-      options: ["Node.js", "Django", "Spring", "Flask"],
-    },
-    {
-      id: 4,
-      question: "Which database do you prefer?",
-      options: ["MySQL", "PostgreSQL", "MongoDB", "SQLite"],
-    },
-    {
-      id: 5,
-      question: "Which cloud platform do you use?",
-      options: ["AWS", "Azure", "Google Cloud", "DigitalOcean"],
-    },
-  ];
+  const [userPolls, setUserPolls] = useState();
 
   const handleNavigateToPoll = (pollId) => {
-    navigate(`/poll/${pollId}`); // Navigate to the single poll page with the poll ID
+    navigate(`/single-poll`, { state: { pollId } });
   };
 
-  return (
-    <div className="flex flex-wrap justify-center gap-8 mt-10">
-      {/* Map over pollData to generate cards */}
-      {pollData.map((poll) => (
-        <div
-          key={poll.id}
-          className="w-1/3 bg-white p-6 rounded-lg shadow-md border border-indigo-200 cursor-pointer"
-          onClick={() => handleNavigateToPoll(poll.id)} // Navigate to the poll details page when clicked
-        >
-          {/* Poll Question */}
-          <h2 className="text-xl font-bold text-indigo-600 mb-4">
-            {poll.question}
-          </h2>
+  const token = localStorage.getItem("token");
 
-          {/* Poll Options */}
-          <ul>
-            {poll.options.map((option, index) => (
-              <li key={index} className="mb-2">
-                <button
-                  className="w-full text-left py-2 px-4 bg-indigo-50 text-indigo-600 rounded-lg"
-                  disabled
-                >
-                  {option}
-                </button>
-              </li>
-            ))}
-          </ul>
-        </div>
-      ))}
-    </div>
+  useEffect(() => {
+    const data = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:5000/poll/get-my-all-polls",
+
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        setUserPolls(response.data.body);
+        console.log(response.data.body);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    data();
+  }, []);
+
+  return (
+    <>
+      <div className="flex flex-wrap justify-center gap-8 mt-10">
+        {userPolls && userPolls.length > 0 ? (
+          userPolls.map((poll) => (
+            <div
+              key={poll._id}
+              className="w-1/3 bg-white p-6 rounded-lg shadow-md border border-indigo-200 cursor-pointer"
+              onClick={() => handleNavigateToPoll(poll._id)}
+            >
+              <h2 className="text-xl font-bold text-indigo-600 mb-4">
+                {poll.desc}
+              </h2>
+
+              <ul>
+                <li className="mb-2">
+                  <button
+                    className="w-full text-left py-2 px-4 bg-indigo-50 text-indigo-600 rounded-lg"
+                    disabled
+                  >
+                    {poll.option_2}
+                  </button>
+                </li>
+                <li className="mb-2">
+                  <button
+                    className="w-full text-left py-2 px-4 bg-indigo-50 text-indigo-600 rounded-lg"
+                    disabled
+                  >
+                    {poll.option_3}
+                  </button>
+                </li>{" "}
+                <li className="mb-2">
+                  <button
+                    className="w-full text-left py-2 px-4 bg-indigo-50 text-indigo-600 rounded-lg"
+                    disabled
+                  >
+                    {poll.option_1}
+                  </button>
+                </li>{" "}
+                <li className="mb-2">
+                  <button
+                    className="w-full text-left py-2 px-4 bg-indigo-50 text-indigo-600 rounded-lg"
+                    disabled
+                  >
+                    {poll.option_4}
+                  </button>
+                </li>
+              </ul>
+            </div>
+          ))
+        ) : (
+          <p>No polls available</p>
+        )}
+      </div>
+    </>
   );
 }
