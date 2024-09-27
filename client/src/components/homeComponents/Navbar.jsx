@@ -35,7 +35,17 @@ const Navbar = () => {
             >
               Poll
             </Link>
+
+            <Link
+              to="/my-polls"
+              className="text-white hover:text-yellow-300 transition duration-200 px-3 py-2 rounded-md text-sm font-medium"
+            >
+              My Polls
+            </Link>
+            <Link className="text-white hover:text-yellow-300 transition duration-200 px-3 py-2 rounded-md text-sm font-medium">
+
             <Link className="text-white  hover:text-yellow-300 transition duration-200 px-3 py-2 rounded-md font-bold">
+
               About
             </Link>{" "}
             <Link className="text-white  hover:text-yellow-300 transition duration-200 px-3 py-2 rounded-md font-bold">
