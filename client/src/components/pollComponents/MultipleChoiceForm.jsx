@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const MultipleChoiceForm = () => {
   const navigate = useNavigate();
@@ -59,6 +61,7 @@ const MultipleChoiceForm = () => {
           },
         }
       );
+      toast.success("Poll Created successfully");
       console.log(response);
     } catch (err) {
       setError("Failed to create poll. Please try again.");
@@ -209,6 +212,7 @@ const MultipleChoiceForm = () => {
           </div>
         )}
       </form>
+      <ToastContainer />
     </div>
   );
 };

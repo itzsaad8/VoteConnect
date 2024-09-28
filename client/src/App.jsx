@@ -11,6 +11,8 @@ import MyPollPage from "./pages/pollPage/MyPollPage";
 import SinglePoll from "./components/pollComponents/myPolls/SinglePoll";
 import SinglePollResult from "./components/pollComponents/myPolls/SinglePollResult";
 import SinglePollVotersDetail from "./components/pollComponents/myPolls/SinglePollVotersDetail";
+import Profile from "./components/Profile/Profile";
+import YesNoPoll from "./components/pollComponents/YesNoPolls/YesNoPoll";
 
 const router = createBrowserRouter([
   {
@@ -22,6 +24,14 @@ const router = createBrowserRouter([
         element: <HomePage />,
       },
       {
+        path: "/sign-up",
+        element: <SignUp />,
+      },
+      {
+        path: "/profile",
+        element: <Profile />,
+      },
+      {
         path: "/poll",
         element: <PollPage />,
       },
@@ -31,11 +41,11 @@ const router = createBrowserRouter([
       },
 
       {
-        path: "/signup",
-        element: <SignUp />,
+        path: "/single-poll",
+        element: <SinglePoll />,
       },
       {
-        path: "/single-poll",
+        path: "/single-poll/:id",
         element: <SinglePoll />,
       },
       {
@@ -45,6 +55,12 @@ const router = createBrowserRouter([
       {
         path: "/single-poll-voter-details",
         element: <SinglePollVotersDetail />,
+      },
+
+      // yes no components
+      {
+        path: "/yes-no-poll",
+        element: <YesNoPoll />,
       },
     ],
   },

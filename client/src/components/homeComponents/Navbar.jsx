@@ -16,6 +16,7 @@ const Navbar = () => {
     { name: "Contact", href: "#contact" },
     { name: "Login/SignUp", href: "#login" },
   ];
+  const token = localStorage.getItem("token");
 
   return (
     <nav className="bg-blue-700 shadow-md">
@@ -35,24 +36,38 @@ const Navbar = () => {
             >
               Poll
             </Link>
-
             <Link
               to="/my-polls"
-              className="text-white hover:text-yellow-300 transition duration-200 px-3 py-2 rounded-md text-sm font-medium"
+              className="text-white  hover:text-yellow-300 transition duration-200 px-3 py-2 rounded-md font-bold"
             >
               My Polls
             </Link>
-            <Link className="text-white hover:text-yellow-300 transition duration-200 px-3 py-2 rounded-md text-sm font-medium">
-
             <Link className="text-white  hover:text-yellow-300 transition duration-200 px-3 py-2 rounded-md font-bold">
-
               About
             </Link>{" "}
             <Link className="text-white  hover:text-yellow-300 transition duration-200 px-3 py-2 rounded-md font-bold">
               Contact
             </Link>{" "}
-            <Link className="text-white  hover:text-yellow-300 transition duration-200 px-3 py-2 rounded-md font-bold">
-              Login
+            {token ? (
+              <Link
+                to=""
+                className="text-white  hover:text-yellow-300 transition duration-200 px-3 py-2 rounded-md font-bold"
+              >
+                LogOut
+              </Link>
+            ) : (
+              <Link
+                to="/sign-up"
+                className="text-white  hover:text-yellow-300 transition duration-200 px-3 py-2 rounded-md font-bold"
+              >
+                SignUp
+              </Link>
+            )}
+            <Link
+              to="/profile"
+              className="text-white  hover:text-yellow-300 transition duration-200 px-3 py-2 rounded-md font-bold"
+            >
+              Profile
             </Link>
           </div>
 
