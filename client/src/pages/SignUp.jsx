@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function SignUp() {
   const [formData, setFormData] = useState({
@@ -26,6 +28,7 @@ export default function SignUp() {
       );
       console.log(response);
       localStorage.setItem("token", response.data.token);
+      toast.success("Signup successful!");
       setSuccess("Signup successful!");
       setError("");
       console.log("Response:", response.data); // Handle response accordingly
@@ -42,7 +45,7 @@ export default function SignUp() {
         <h2 className="text-2xl font-bold text-center text-indigo-600 mb-6">
           Sign Up
         </h2>
-        {success && <div className="mb-4 text-green-600">{success}</div>}
+        {success && <div className="mb-4 text-green-600">{success} </div>}
         {error && <div className="mb-4 text-red-600">{error}</div>}
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
@@ -107,6 +110,7 @@ export default function SignUp() {
           </a>
         </p>
       </div>
+      <ToastContainer />
     </div>
   );
 }

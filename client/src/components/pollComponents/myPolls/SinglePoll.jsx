@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function SinglePoll() {
   const [loading, setLoading] = useState(false);
+  const [urlPollId, setUrlPollId] = useState(null);
 
   const navigate = useNavigate();
   const handleNavigateToResult = (pollId) => {
@@ -11,15 +14,18 @@ export default function SinglePoll() {
   };
 
   const [poll, setPoll] = useState();
+  const { id } = useParams();
 
   const location = useLocation();
-  const { pollId } = location.state;
+  const pollUrlId = location?.state?.pollId || id || null;
+
   //   console.log("pollidp", pollId);
+
   useEffect(() => {
     const data = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/poll/get/${pollId}`
+          `http://localhost:5000/poll/get/${pollUrlId}`
         );
         setPoll(response.data.body);
         // console.log(response.data.body.desc);
@@ -40,7 +46,7 @@ export default function SinglePoll() {
 
   const handleSubmitVote = async () => {
     const payload = {
-      pollId: pollId,
+      pollId: pollUrlId,
       selectedCandidate: selectedOption,
     };
     setLoading(true);
@@ -55,12 +61,25 @@ export default function SinglePoll() {
           },
         }
       );
+      toast.success("Vote Casted!");
+
       setLoading(false);
       console.log(response.data.body);
     } catch (err) {
       console.log(err);
     }
   };
+
+  const sharePoll = () => {
+    const shareUrl = `${window.location.origin}/single-poll/${pollUrlId}`;
+    navigator.clipboard.writeText(shareUrl).then(() => {
+      alert("Url Copied");
+    });
+  };
+  const token = localStorage.getItem("token");
+  if (!token) {
+    return navigate("/sign-up");
+  }
 
   return (
     <>
@@ -126,6 +145,12 @@ export default function SinglePoll() {
         <div className="flex justify-between gap-5">
           <button
             className="bg-indigo-600 text-white text-lg px-6 py-2 rounded-xl mt-7"
+            onClick={sharePoll}
+          >
+            Share
+          </button>
+          <button
+            className="bg-indigo-600 text-white text-lg px-6 py-2 rounded-xl mt-7"
             onClick={handleSubmitVote}
             disabled={loading}
           >
@@ -133,11 +158,12 @@ export default function SinglePoll() {
           </button>
           <button
             className="bg-indigo-600 text-white text-lg px-6 py-2 rounded-xl mt-7"
-            onClick={() => handleNavigateToResult(pollId)}
+            onClick={() => handleNavigateToResult(pollUrlId)}
           >
             See Result
           </button>
         </div>
+        <ToastContainer />;
       </div>
     </>
   );
