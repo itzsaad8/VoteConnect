@@ -43,8 +43,8 @@ const Instructions = () => {
   return (
     <section className="py-16 bg-white">
       <div className="container mx-auto px-4">
-        <h2 className="text-4xl font-bold text-center text-gray-800 mb-8">
-          Instructions for Polling
+        <h2 className="text-4xl font-bold text-center text-blue-950 mb-8">
+          Instructions For Polling
         </h2>
         <p className="text-center text-lg text-gray-600 mb-12">
           Follow these simple steps to create and participate in polls easily.
@@ -53,9 +53,9 @@ const Instructions = () => {
           {instructions.map((instruction) => (
             <div
               key={instruction.id}
-              className="bg-indigo-100 rounded-lg p-6 shadow-md hover:shadow-lg transition duration-300 ease-in-out"
+              className="bg-blue-100 rounded-lg p-6 shadow-md hover:shadow-lg transition duration-300 ease-in-out"
             >
-              <h3 className="text-2xl font-semibold text-indigo-600 mb-2">
+              <h3 className="text-2xl font-semibold text-blue-900 mb-2">
                 {instruction.title}
               </h3>
               <p className="text-gray-700">{instruction.description}</p>

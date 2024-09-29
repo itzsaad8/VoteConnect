@@ -13,7 +13,7 @@ export default function SinglePoll() {
     navigate(`/single-poll-result`, { state: { pollId } });
   };
 
-  const [poll, setPoll] = useState();
+  const [mcqPpoll, setMcqsPoll] = useState();
   const { id } = useParams();
 
   const location = useLocation();
@@ -27,7 +27,7 @@ export default function SinglePoll() {
         const response = await axios.get(
           `http://localhost:5000/poll/get/${pollUrlId}`
         );
-        setPoll(response.data.body);
+        setMcqsPoll(response.data.body);
         // console.log(response.data.body.desc);
       } catch (err) {
         console.log(err);
@@ -42,7 +42,7 @@ export default function SinglePoll() {
   const handleOptionClick = (option) => {
     setSelectedOption(option); // Update the selected option state
   };
-  console.log(selectedOption);
+  // console.log(selectedOption);
 
   const handleSubmitVote = async () => {
     const payload = {
@@ -84,59 +84,59 @@ export default function SinglePoll() {
   return (
     <>
       <div className="flex flex-col justify-center items-center h-[70vh]">
-        {poll && (
-          <div className="w-1/3 mx-auto  bg-white p-6 rounded-lg shadow-md border border-indigo-200 ">
-            <h2 className="text-xl font-bold text-indigo-600 mb-4">
-              {poll.desc}
+        {mcqPpoll && (
+          <div className="w-1/3 mx-auto  bg-white p-6 rounded-lg shadow-md border border-blue-200 ">
+            <h2 className="text-xl font-bold text-blue-950 mb-4">
+              {mcqPpoll.desc}
             </h2>
 
             <ul>
               <li className="mb-2">
                 <button
                   className={`w-full text-left py-2 px-4 rounded-lg cursor-pointer ${
-                    selectedOption === poll.option_1
-                      ? "bg-indigo-600 text-white"
-                      : "bg-indigo-50 text-indigo-600 hover:bg-indigo-200"
+                    selectedOption === mcqPpoll.option_1
+                      ? "bg-blue-950 text-white"
+                      : "bg-blue-100 text-blue-950 hover:bg-blue-200"
                   }`}
-                  onClick={() => handleOptionClick(poll.option_1)}
+                  onClick={() => handleOptionClick(mcqPpoll.option_1)}
                 >
-                  {poll.option_1}
+                  {mcqPpoll.option_1}
                 </button>
               </li>
               <li className="mb-2">
                 <button
                   className={`w-full text-left py-2 px-4 rounded-lg cursor-pointer ${
-                    selectedOption === poll.option_2
-                      ? "bg-indigo-600 text-white"
-                      : "bg-indigo-50 text-indigo-600 hover:bg-indigo-200"
+                    selectedOption === mcqPpoll.option_2
+                      ? "bg-blue-950 text-white"
+                      : "bg-blue-100 text-blue-950 hover:bg-blue-200"
                   }`}
-                  onClick={() => handleOptionClick(poll.option_2)}
+                  onClick={() => handleOptionClick(mcqPpoll.option_2)}
                 >
-                  {poll.option_2}
+                  {mcqPpoll.option_2}
                 </button>
               </li>{" "}
               <li className="mb-2">
                 <button
                   className={`w-full text-left py-2 px-4 rounded-lg cursor-pointer ${
-                    selectedOption === poll.option_3
-                      ? "bg-indigo-600 text-white"
-                      : "bg-indigo-50 text-indigo-600 hover:bg-indigo-200"
+                    selectedOption === mcqPpoll.option_3
+                      ? "bg-blue-950 text-white"
+                      : "bg-blue-100 text-blue-950 hover:bg-blue-200"
                   }`}
-                  onClick={() => handleOptionClick(poll.option_3)}
+                  onClick={() => handleOptionClick(mcqPpoll.option_3)}
                 >
-                  {poll.option_3}
+                  {mcqPpoll.option_3}
                 </button>
               </li>{" "}
               <li className="mb-2">
                 <button
                   className={`w-full text-left py-2 px-4 rounded-lg cursor-pointer ${
-                    selectedOption === poll.option_4
-                      ? "bg-indigo-600 text-white "
-                      : "bg-indigo-50 text-indigo-600 hover:bg-indigo-200"
+                    selectedOption === mcqPpoll.option_4
+                      ? "bg-blue-950 text-white "
+                      : "bg-blue-100 text-blue-950 hover:bg-blue-200"
                   }`}
-                  onClick={() => handleOptionClick(poll.option_4)}
+                  onClick={() => handleOptionClick(mcqPpoll.option_4)}
                 >
-                  {poll.option_4}
+                  {mcqPpoll.option_4}
                 </button>
               </li>
             </ul>
@@ -144,20 +144,20 @@ export default function SinglePoll() {
         )}
         <div className="flex justify-between gap-5">
           <button
-            className="bg-indigo-600 text-white text-lg px-6 py-2 rounded-xl mt-7"
+            className="bg-blue-950 text-white text-lg px-6 py-2 rounded-xl mt-7"
             onClick={sharePoll}
           >
             Share
           </button>
           <button
-            className="bg-indigo-600 text-white text-lg px-6 py-2 rounded-xl mt-7"
+            className="bg-blue-950 text-white text-lg px-6 py-2 rounded-xl mt-7"
             onClick={handleSubmitVote}
             disabled={loading}
           >
             {loading ? "Submitting..." : "Submit Vote"}
           </button>
           <button
-            className="bg-indigo-600 text-white text-lg px-6 py-2 rounded-xl mt-7"
+            className="bg-blue-950 text-white text-lg px-6 py-2 rounded-xl mt-7"
             onClick={() => handleNavigateToResult(pollUrlId)}
           >
             See Result

@@ -17,7 +17,7 @@ export default function SinglePollResult() {
           `http://localhost:5000/poll/get-all-mcqs-details/${pollId}`
         );
         setDetails(response.data.body);
-        // console.log("details", response.data.body);
+        // console.log("details", response);
       } catch (err) {
         console.log(err);
       }
@@ -34,7 +34,7 @@ export default function SinglePollResult() {
       <div className="flex  flex-col gap-4 justify-center items-center h-[100vh]">
         {details && (
           <div className="bg-white p-6 rounded-lg shadow-md border border-indigo-200 w-1/3">
-            <h2 className="text-xl font-bold text-indigo-600 mb-4">
+            <h2 className="text-xl font-bold text-blue-950 mb-4">
               {details.mcqsDetails[0].pollId.desc}
             </h2>
 
@@ -47,7 +47,7 @@ export default function SinglePollResult() {
                 </div>
                 <div className="w-full bg-gray-200 rounded-full h-2.5 mb-2">
                   <div
-                    className="bg-indigo-600 h-2.5 rounded-full"
+                    className="bg-blue-950 h-2.5 rounded-full"
                     style={{
                       width: `${calculatePercentage(
                         details.voteCounts.option1,
@@ -65,7 +65,7 @@ export default function SinglePollResult() {
                 </div>
                 <div className="w-full bg-gray-200 rounded-full h-2.5 mb-2">
                   <div
-                    className="bg-indigo-600 h-2.5 rounded-full"
+                    className="bg-blue-950 h-2.5 rounded-full"
                     style={{
                       width: `${calculatePercentage(
                         details.voteCounts.option2,
@@ -83,7 +83,7 @@ export default function SinglePollResult() {
                 </div>
                 <div className="w-full bg-gray-200 rounded-full h-2.5 mb-2">
                   <div
-                    className="bg-indigo-600 h-2.5 rounded-full"
+                    className="bg-blue-950 h-2.5 rounded-full"
                     style={{
                       width: `${calculatePercentage(
                         details.voteCounts.option3,
@@ -101,7 +101,7 @@ export default function SinglePollResult() {
                 </div>
                 <div className="w-full bg-gray-200 rounded-full h-2.5 mb-2">
                   <div
-                    className="bg-indigo-600 h-2.5 rounded-full"
+                    className="bg-blue-950 h-2.5 rounded-full"
                     style={{
                       width: `${calculatePercentage(
                         details.voteCounts.option4,
@@ -120,7 +120,7 @@ export default function SinglePollResult() {
         )}
         <div>
           <div
-            className="bg-indigo-600 mt-6 text-white text-lg rounded-xl px-6 py-2 cursor-pointer"
+            className="bg-blue-950 mt-6 text-white text-lg rounded-xl px-6 py-2 cursor-pointer"
             onClick={() => handleNavigateToPollDetails(pollId)}
           >
             See Voters Detail

@@ -9,28 +9,28 @@ import {
 const features = [
   {
     id: 1,
-    icon: <FaHandsHelping className="text-6xl text-indigo-600 mb-4" />,
+    icon: <FaHandsHelping className="text-6xl text-blue-900 mb-4" />,
     title: "Expert Support",
     description:
       "We provide expert assistance and support, ensuring your success at every step.",
   },
   {
     id: 2,
-    icon: <FaShieldAlt className="text-6xl text-indigo-600 mb-4" />,
+    icon: <FaShieldAlt className="text-6xl text-blue-900 mb-4" />,
     title: "Reliability",
     description:
       "Our solutions are reliable and secure, designed to perform under any circumstances.",
   },
   {
     id: 3,
-    icon: <FaBolt className="text-6xl text-indigo-600 mb-4" />,
+    icon: <FaBolt className="text-6xl text-blue-900 mb-4" />,
     title: "Fast & Efficient",
     description:
       "Experience lightning-fast performance and efficient solutions tailored to your needs.",
   },
   {
     id: 4,
-    icon: <FaThumbsUp className="text-6xl text-indigo-600 mb-4" />,
+    icon: <FaThumbsUp className="text-6xl text-blue-900 mb-4" />,
     title: "Customer Satisfaction",
     description:
       "Your satisfaction is our top priority, and we strive to exceed your expectations.",
@@ -41,7 +41,7 @@ const WhyChooseUs = () => {
   return (
     <section className="py-16 bg-gray-100">
       <div className="container mx-auto px-4">
-        <h2 className="text-4xl font-bold text-center text-gray-800 mb-8">
+        <h2 className="text-4xl font-bold text-center text-blue-950 mb-8">
           Why Choose Us
         </h2>
         <p className="text-center text-lg text-gray-600 mb-16">
