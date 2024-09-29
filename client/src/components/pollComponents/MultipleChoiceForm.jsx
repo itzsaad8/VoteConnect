@@ -76,114 +76,114 @@ const MultipleChoiceForm = () => {
         onSubmit={handleSubmit}
         className="border p-6 rounded-lg shadow-lg bg-indigo-50"
       >
-        <label className="block mb-2 font-semibold text-indigo-600">
+        <label className="block mb-2 font-semibold text-blue-950">
           Poll Title:
           <input
             type="text"
             name="title"
             value={formData.title}
             onChange={handleChange}
-            className="border p-2 w-full rounded-lg mt-1 focus:outline-none focus:ring-2 focus:ring-indigo-600 bg-white"
+            className="border p-2 w-full rounded-lg mt-1 focus:outline-none focus:ring-2 focus:ring-blue-800 bg-white"
             placeholder="Enter your poll title"
             required
           />
         </label>
 
-        <label className="block mb-2 font-semibold text-indigo-600">
+        <label className="block mb-2 font-semibold text-blue-950">
           Poll Description:
           <textarea
             name="desc"
             value={formData.desc}
             onChange={handleChange}
-            className="border p-2 w-full rounded-lg mt-1 focus:outline-none focus:ring-2 focus:ring-indigo-600 bg-white"
+            className="border p-2 w-full rounded-lg mt-1 focus:outline-none focus:ring-2 focus:ring-blue-800 bg-white"
             placeholder="Enter a brief description of the poll"
             required
           />
         </label>
 
-        <label className="block mb-2 font-semibold text-indigo-600">
+        <label className="block mb-2 font-semibold text-blue-950">
           Option 1:
           <input
             type="text"
             name="option_1"
             value={formData.option_1}
             onChange={handleChange}
-            className="border p-2 w-full rounded-lg mt-1 focus:outline-none focus:ring-2 focus:ring-indigo-600 bg-white"
+            className="border p-2 w-full rounded-lg mt-1 focus:outline-none focus:ring-2 focus:ring-blue-800 bg-white"
             placeholder="Enter option 1"
             required
           />
         </label>
 
-        <label className="block mb-2 font-semibold text-indigo-600">
+        <label className="block mb-2 font-semibold text-blue-950">
           Option 2:
           <input
             type="text"
             name="option_2"
             value={formData.option_2}
             onChange={handleChange}
-            className="border p-2 w-full rounded-lg mt-1 focus:outline-none focus:ring-2 focus:ring-indigo-600 bg-white"
+            className="border p-2 w-full rounded-lg mt-1 focus:outline-none focus:ring-2 focus:ring-blue-800 bg-white"
             placeholder="Enter option 2"
             required
           />
         </label>
 
-        <label className="block mb-2 font-semibold text-indigo-600">
+        <label className="block mb-2 font-semibold text-blue-950">
           Option 3:
           <input
             type="text"
             name="option_3"
             value={formData.option_3}
             onChange={handleChange}
-            className="border p-2 w-full rounded-lg mt-1 focus:outline-none focus:ring-2 focus:ring-indigo-600 bg-white"
+            className="border p-2 w-full rounded-lg mt-1 focus:outline-none focus:ring-2 focus:ring-blue-800 bg-white"
             placeholder="Enter option 3"
           />
         </label>
 
-        <label className="block mb-2 font-semibold text-indigo-600">
+        <label className="block mb-2 font-semibold text-blue-950">
           Option 4:
           <input
             type="text"
             name="option_4"
             value={formData.option_4}
             onChange={handleChange}
-            className="border p-2 w-full rounded-lg mt-1 focus:outline-none focus:ring-2 focus:ring-indigo-600 bg-white"
+            className="border p-2 w-full rounded-lg mt-1 focus:outline-none focus:ring-2 focus:ring-blue-800 bg-white"
             placeholder="Enter option 4"
           />
         </label>
 
-        <label className="block mb-2 font-semibold text-indigo-600">
+        <label className="block mb-2 font-semibold text-blue-950">
           Visibility:
           <select
             name="visibility"
             value={formData.visibility}
             onChange={handleChange}
-            className="border p-2 w-full rounded-lg mt-1 focus:outline-none focus:ring-2 focus:ring-indigo-600 bg-white"
+            className="border p-2 w-full rounded-lg mt-1 focus:outline-none focus:ring-2 focus:ring-blue-800 bg-white"
           >
             <option value="private">Private</option>
             <option value="public">Public</option>
           </select>
         </label>
 
-        <label className="block mb-2 font-semibold text-indigo-600">
+        <label className="block mb-2 font-semibold text-blue-950">
           Live Results:
           <select
             name="liveResult"
             value={formData.liveResult}
             onChange={handleChange}
-            className="border p-2 w-full rounded-lg mt-1 focus:outline-none focus:ring-2 focus:ring-indigo-600 bg-white"
+            className="border p-2 w-full rounded-lg mt-1 focus:outline-none focus:ring-2 focus:ring-blue-800 bg-white"
           >
             <option value="Yes">Yes</option>
             <option value="No">No</option>
           </select>
         </label>
 
-        <label className="block mb-2 font-semibold text-indigo-600">
+        <label className="block mb-2 font-semibold text-blue-950">
           Show User Details:
           <select
             name="showUserDetails"
             value={formData.showUserDetails}
             onChange={handleChange}
-            className="border p-2 w-full rounded-lg mt-1 focus:outline-none focus:ring-2 focus:ring-indigo-600 bg-white"
+            className="border p-2 w-full rounded-lg mt-1 focus:outline-none focus:ring-2 focus:ring-blue-800 bg-white"
           >
             <option value="Yes">Yes</option>
             <option value="No">No</option>
@@ -193,7 +193,7 @@ const MultipleChoiceForm = () => {
         <div className="flex items-center gap-6">
           <button
             type="submit"
-            className="mt-6 bg-indigo-600 text-white py-2 px-4 rounded-lg hover:bg-indigo-700 transition duration-300"
+            className="mt-6 bg-blue-950 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition duration-300"
             disabled={loading}
           >
             {loading ? "Creating Poll..." : "Create Poll"}

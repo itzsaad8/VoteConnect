@@ -35,7 +35,7 @@ const Features = () => {
   return (
     <section className="py-16 bg-gray-100">
       <div className="container mx-auto px-4 text-center">
-        <h2 className="text-4xl font-bold text-gray-800 mb-8">Key Features</h2>
+        <h2 className="text-4xl font-bold text-blue-950 mb-8">Key Features</h2>
         <p className="text-lg text-gray-600 mb-12">
           Discover the benefits of using our platform and how it can enhance
           your polling experience.
@@ -47,7 +47,7 @@ const Features = () => {
               className="bg-white rounded-lg p-6 shadow-lg hover:shadow-xl transition duration-300 ease-in-out"
             >
               <div className="text-4xl mb-4">{feature.icon}</div>
-              <h3 className="text-2xl font-semibold text-indigo-600 mb-2">
+              <h3 className="text-2xl font-semibold text-blue-950 mb-2">
                 {feature.title}
               </h3>
               <p className="text-gray-700">{feature.description}</p>

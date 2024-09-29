@@ -26,10 +26,10 @@ export default function SinglePollVotersDetail() {
     <>
       <div className="flex justify-center mt-10">
         <div className="w-1/2 p-6 bg-white shadow-md rounded-lg">
-          <h2 className="text-xl font-bold text-indigo-600 mb-4">
+          <h2 className="text-xl font-bold text-blue-950 mb-4">
             Voter Details
           </h2>
-          <div className="flex justify-between items-center text-indigo-600">
+          <div className="flex justify-between items-center text-blue-950">
             <span>Voter Name</span>
             <span>Selected Candidate</span>
           </div>

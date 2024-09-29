@@ -19,7 +19,7 @@ const Navbar = () => {
   const token = localStorage.getItem("token");
 
   return (
-    <nav className="bg-blue-700 shadow-md">
+    <nav className="bg-blue-950 shadow-md py-">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Website Logo/Name */}
@@ -31,10 +31,16 @@ const Navbar = () => {
               Home
             </Link>
             <Link
+              to="/public-polls"
+              className="text-white  hover:text-yellow-300 transition duration-200 px-3 py-2 rounded-md font-bold"
+            >
+              Public Polls
+            </Link>
+            <Link
               to="/poll"
               className="text-white  hover:text-yellow-300 transition duration-200 px-3 py-2 rounded-md font-bold"
             >
-              Poll
+              Create Poll
             </Link>
             <Link
               to="/my-polls"
@@ -42,12 +48,7 @@ const Navbar = () => {
             >
               My Polls
             </Link>
-            <Link className="text-white  hover:text-yellow-300 transition duration-200 px-3 py-2 rounded-md font-bold">
-              About
-            </Link>{" "}
-            <Link className="text-white  hover:text-yellow-300 transition duration-200 px-3 py-2 rounded-md font-bold">
-              Contact
-            </Link>{" "}
+
             {token ? (
               <Link
                 to=""

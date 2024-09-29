@@ -6,19 +6,19 @@ const statsData = [
     id: 1,
     title: "Total Users",
     value: 100,
-    icon: <FaUserAlt className="text-5xl text-indigo-600 mb-4" />,
+    icon: <FaUserAlt className="text-5xl text-blue-900 mb-4" />,
   },
   {
     id: 2,
     title: "Total Voters",
     value: 50,
-    icon: <FaVoteYea className="text-5xl text-indigo-600 mb-4" />,
+    icon: <FaVoteYea className="text-5xl text-blue-900 mb-4" />,
   },
   {
     id: 3,
     title: "Active Members",
     value: 200,
-    icon: <FaUsers className="text-5xl text-indigo-600 mb-4" />,
+    icon: <FaUsers className="text-5xl text-blue-900 mb-4" />,
   },
 ];
 
@@ -49,7 +49,7 @@ const Stats = () => {
   return (
     <section ref={statsRef} className="py-16 bg-gray-50">
       <div className="container mx-auto px-4 text-center">
-        <h2 className="text-4xl font-bold text-gray-800 mb-4">
+        <h2 className="text-4xl font-bold text-blue-950 mb-4">
           Our Community at a Glance
         </h2>
         <p className="text-lg text-gray-600 mb-12">
@@ -67,7 +67,7 @@ const Stats = () => {
                 {/* Centering the icon */}
                 {stat.icon}
               </div>
-              <h3 className="text-3xl font-semibold text-indigo-600 mb-2">
+              <h3 className="text-3xl font-semibold text-blue-900 mb-2">
                 {isVisible ? <CountUp end={stat.value} duration={2} /> : 0}
               </h3>
               <p className="text-gray-700 text-lg">{stat.title}</p>

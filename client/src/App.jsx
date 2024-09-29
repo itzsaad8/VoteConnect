@@ -13,6 +13,8 @@ import SinglePollResult from "./components/pollComponents/myPolls/SinglePollResu
 import SinglePollVotersDetail from "./components/pollComponents/myPolls/SinglePollVotersDetail";
 import Profile from "./components/Profile/Profile";
 import YesNoPoll from "./components/pollComponents/YesNoPolls/YesNoPoll";
+import SingleYonResult from "./components/pollComponents/YesNoPolls/SingleYonResult";
+import PublicPollsPage from "./pages/publicPollpage/PublicPollsPage";
 
 const router = createBrowserRouter([
   {
@@ -59,8 +61,21 @@ const router = createBrowserRouter([
 
       // yes no components
       {
-        path: "/yes-no-poll",
+        path: "/single-yon-poll",
         element: <YesNoPoll />,
+      },
+      {
+        path: "/single-yon-poll/:id",
+        element: <YesNoPoll />,
+      },
+      {
+        path: "/single-yon-result",
+        element: <SingleYonResult />,
+      },
+      // public
+      {
+        path: "/public-polls",
+        element: <PublicPollsPage />,
       },
     ],
   },

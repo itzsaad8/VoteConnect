@@ -21,7 +21,7 @@ const Poll = () => {
     <div className="flex h-screen">
       {/* Left Sidebar */}
       <div className="w-1/4 bg-indigo-100 p-4 border-r border-indigo-200">
-        <h2 className="text-lg font-bold mb-4 text-indigo-600">
+        <h2 className="text-lg font-bold mb-4 text-blue-950">
           Select Poll Type
         </h2>
         <ul>
@@ -29,8 +29,8 @@ const Poll = () => {
             <button
               className={`w-full py-2 px-4 text-left ${
                 pollType === "multipleChoice"
-                  ? "bg-indigo-600 text-white"
-                  : "bg-indigo-50 text-indigo-600 hover:bg-indigo-200"
+                  ? "bg-blue-950 text-white"
+                  : "bg-indigo-50 text-blue-950 hover:bg-indigo-200"
               } rounded-lg transition duration-300`}
               onClick={() => handlePollTypeChange("multipleChoice")}
             >
@@ -41,8 +41,8 @@ const Poll = () => {
             <button
               className={`w-full py-2 px-4 text-left ${
                 pollType === "yesNo"
-                  ? "bg-indigo-600 text-white"
-                  : "bg-indigo-50 text-indigo-600 hover:bg-indigo-200"
+                  ? "bg-blue-950 text-white"
+                  : "bg-indigo-50 text-blue-950 hover:bg-indigo-200"
               } rounded-lg transition duration-300`}
               onClick={() => handlePollTypeChange("yesNo")}
             >
@@ -53,8 +53,8 @@ const Poll = () => {
             <button
               className={`w-full py-2 px-4 text-left ${
                 pollType === "openEnded"
-                  ? "bg-indigo-600 text-white"
-                  : "bg-indigo-50 text-indigo-600 hover:bg-indigo-200"
+                  ? "bg-blue-950 text-white"
+                  : "bg-indigo-50 text-blue-950 hover:bg-indigo-200"
               } rounded-lg transition duration-300`}
               onClick={() => handlePollTypeChange("openEnded")}
             >
@@ -65,8 +65,8 @@ const Poll = () => {
             <button
               className={`w-full py-2 px-4 text-left ${
                 pollType === "opinionPoll"
-                  ? "bg-indigo-600 text-white"
-                  : "bg-indigo-50 text-indigo-600 hover:bg-indigo-200"
+                  ? "bg-blue-950 text-white"
+                  : "bg-indigo-50 text-blue-950 hover:bg-indigo-200"
               } rounded-lg transition duration-300`}
               onClick={() => handlePollTypeChange("opinionPoll")}
             >
@@ -77,8 +77,8 @@ const Poll = () => {
             <button
               className={`w-full py-2 px-4 text-left ${
                 pollType === "rankedChoice"
-                  ? "bg-indigo-600 text-white"
-                  : "bg-indigo-50 text-indigo-600 hover:bg-indigo-200"
+                  ? "bg-blue-950 text-white"
+                  : "bg-indigo-50 text-blue-950 hover:bg-indigo-200"
               } rounded-lg transition duration-300`}
               onClick={() => handlePollTypeChange("rankedChoice")}
             >
@@ -90,7 +90,7 @@ const Poll = () => {
 
       {/* Right Form Section */}
       <div className="w-3/4 p-8 bg-white">
-        <h2 className="text-2xl text-center font-bold mb-6 text-indigo-600">
+        <h2 className="text-2xl text-center font-bold mb-6 text-blue-950">
           Create Your Poll
         </h2>
         {pollType === "multipleChoice" && <MultipleChoiceForm />}
