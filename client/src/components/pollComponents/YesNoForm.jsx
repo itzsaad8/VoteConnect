@@ -47,7 +47,7 @@ const YesNoForm = () => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="border p-6 rounded-lg shadow-lg bg-indigo-50"
+      className="border p-6 rounded-lg shadow-lg bg-blue-100"
     >
       <label className="block mb-2 font-semibold text-blue-950">
         Poll Question:
@@ -63,7 +63,7 @@ const YesNoForm = () => {
       {/* <PollOptions /> */}
       <button
         type="submit"
-        className="mt-6 bg-blue-950 text-white py-2 px-4 rounded-lg hover:bg-blue-800 transition duration-300"
+        className="mt-6 bg-blue-950 text-white py-2 px-4 rounded-lg hover:bg-blue-200 hover:text-blue-950 transition duration-300"
       >
         Create Yes/No Poll
       </button>
