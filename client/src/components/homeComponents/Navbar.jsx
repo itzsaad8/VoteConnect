@@ -17,16 +17,19 @@ const Navbar = () => {
     { name: "Login/SignUp", href: "#login" },
   ];
   const token = localStorage.getItem("token");
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+  };
 
   return (
-    <nav className="bg-blue-950 shadow-md py-">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <nav className="bg-blue-950 shadow-md py-2">
+      <div className=" mx-auto px-12 sm:px-16 lg:px-24">
         <div className="flex justify-between items-center h-16">
           {/* Website Logo/Name */}
           <div className="text-2xl font-bold text-white">VoteConnect</div>
 
           {/* Navbar Links for Desktop */}
-          <div className="hidden md:flex space-x-8">
+          <div className="hidden md:flex items-center space-x-8">
             <Link className="text-white  hover:text-yellow-300 transition duration-200 px-3 py-2 rounded-md font-bold">
               Home
             </Link>
@@ -50,12 +53,12 @@ const Navbar = () => {
             </Link>
 
             {token ? (
-              <Link
-                to=""
+              <div
+                onClick={handleLogout}
                 className="text-white  hover:text-yellow-300 transition duration-200 px-3 py-2 rounded-md font-bold"
               >
                 LogOut
-              </Link>
+              </div>
             ) : (
               <Link
                 to="/sign-up"
@@ -66,9 +69,11 @@ const Navbar = () => {
             )}
             <Link
               to="/profile"
-              className="text-white  hover:text-yellow-300 transition duration-200 px-3 py-2 rounded-md font-bold"
+              className="text-white   transition duration-200  py-2 rounded-md font-bold flex items-center gap-3"
             >
-              Profile
+              <span className="hover:text-yellow-300">Profile</span>
+              <p className="rounded-full h-12 w-12 bg-white" />
+              <p></p>
             </Link>
           </div>
 

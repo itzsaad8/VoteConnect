@@ -65,7 +65,7 @@ export default function UserAllPolls() {
               !showMcqsPolls ? "bg-blue-950 text-white" : " text-blue-950"
             }`}
           >
-            Yon Polls ({yonPolls.length})
+            Y/n Polls ({yonPolls.length})
           </button>
         </div>
       </div>
@@ -85,34 +85,22 @@ export default function UserAllPolls() {
                 </h2>
                 <ul>
                   <li className="mb-2">
-                    <button
-                      className="w-full text-left py-2 px-4 bg-indigo-50 text-blue-950 rounded-lg"
-                      disabled
-                    >
+                    <button className="w-full text-left py-2 px-4 bg-blue-100 text-blue-950 rounded-lg">
                       {poll.option_2}
                     </button>
                   </li>
                   <li className="mb-2">
-                    <button
-                      className="w-full text-left py-2 px-4 bg-indigo-50 text-blue-950 rounded-lg"
-                      disabled
-                    >
+                    <button className="w-full text-left py-2 px-4 bg-blue-100 text-blue-950 rounded-lg">
                       {poll.option_3}
                     </button>
                   </li>
                   <li className="mb-2">
-                    <button
-                      className="w-full text-left py-2 px-4 bg-indigo-50 text-blue-950 rounded-lg"
-                      disabled
-                    >
+                    <button className="w-full text-left py-2 px-4 bg-blue-100 text-blue-950 rounded-lg">
                       {poll.option_1}
                     </button>
                   </li>
                   <li className="mb-2">
-                    <button
-                      className="w-full text-left py-2 px-4 bg-indigo-50 text-blue-950 rounded-lg"
-                      disabled
-                    >
+                    <button className="w-full text-left py-2 px-4 bg-blue-100 text-blue-950 rounded-lg">
                       {poll.option_4}
                     </button>
                   </li>

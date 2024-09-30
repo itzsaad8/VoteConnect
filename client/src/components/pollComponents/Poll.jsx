@@ -20,7 +20,7 @@ const Poll = () => {
   return (
     <div className="flex h-screen">
       {/* Left Sidebar */}
-      <div className="w-1/4 bg-indigo-100 p-4 border-r border-indigo-200">
+      <div className="w-1/4 bg-blue-100 p-4 border-r border-indigo-200">
         <h2 className="text-lg font-bold mb-4 text-blue-950">
           Select Poll Type
         </h2>
@@ -30,7 +30,7 @@ const Poll = () => {
               className={`w-full py-2 px-4 text-left ${
                 pollType === "multipleChoice"
                   ? "bg-blue-950 text-white"
-                  : "bg-indigo-50 text-blue-950 hover:bg-indigo-200"
+                  : "bg-indigo-50 text-blue-950 hover:bg-blue-200"
               } rounded-lg transition duration-300`}
               onClick={() => handlePollTypeChange("multipleChoice")}
             >
@@ -42,7 +42,7 @@ const Poll = () => {
               className={`w-full py-2 px-4 text-left ${
                 pollType === "yesNo"
                   ? "bg-blue-950 text-white"
-                  : "bg-indigo-50 text-blue-950 hover:bg-indigo-200"
+                  : "bg-indigo-50 text-blue-950 hover:bg-blue-200"
               } rounded-lg transition duration-300`}
               onClick={() => handlePollTypeChange("yesNo")}
             >
@@ -54,7 +54,7 @@ const Poll = () => {
               className={`w-full py-2 px-4 text-left ${
                 pollType === "openEnded"
                   ? "bg-blue-950 text-white"
-                  : "bg-indigo-50 text-blue-950 hover:bg-indigo-200"
+                  : "bg-indigo-50 text-blue-950 hover:bg-blue-200"
               } rounded-lg transition duration-300`}
               onClick={() => handlePollTypeChange("openEnded")}
             >
@@ -66,7 +66,7 @@ const Poll = () => {
               className={`w-full py-2 px-4 text-left ${
                 pollType === "opinionPoll"
                   ? "bg-blue-950 text-white"
-                  : "bg-indigo-50 text-blue-950 hover:bg-indigo-200"
+                  : "bg-indigo-50 text-blue-950 hover:bg-blue-200"
               } rounded-lg transition duration-300`}
               onClick={() => handlePollTypeChange("opinionPoll")}
             >
@@ -78,7 +78,7 @@ const Poll = () => {
               className={`w-full py-2 px-4 text-left ${
                 pollType === "rankedChoice"
                   ? "bg-blue-950 text-white"
-                  : "bg-indigo-50 text-blue-950 hover:bg-indigo-200"
+                  : "bg-indigo-50 text-blue-950 hover:bg-blue-200"
               } rounded-lg transition duration-300`}
               onClick={() => handlePollTypeChange("rankedChoice")}
             >

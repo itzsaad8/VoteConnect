@@ -12,6 +12,7 @@ export default function AllPublicPolls({ onSelectPoll }) {
           "http://localhost:5000/poll/product/get-all"
         );
         setPolls(response.data.body);
+        // console.log("all", response);
       } catch (err) {
         console.log(err);
       }
@@ -48,23 +49,37 @@ export default function AllPublicPolls({ onSelectPoll }) {
             polls.map((poll) => (
               <div
                 key={poll._id}
-                className="bg-white p-6 rounded-lg shadow-md border border-indigo-200"
+                className="bg-white p-3 rounded-lg shadow-md border border-indigo-200"
                 onClick={() => onSelectPoll(poll)} // Pass the entire poll object to the parent
               >
-                {/* Poll Creator's Name */}
-                <h2 className="text-lg font-bold text-blue-950">
-                  Created by: {poll.creatorName || "Unknown"}{" "}
-                  {/* Example creator */}
-                </h2>
+                <div className="flex items-center justify-between">
+                  {/* Poll Creator's Name */}
+                  <h2 className=" text-blue-950">
+                    {poll.userId?.name || "Unknown"} {/* Example creator */}
+                  </h2>
 
-                {/* Poll Description and Question */}
-                <p className="mt-4 text-gray-700">{poll.category}</p>
-                <p className="mt-2 text-blue-950 font-semibold">{poll.title}</p>
+                  {/* Poll Description and Question */}
+                  <p className=" text-gray-700">
+                    category: {poll.pollId?.category}
+                  </p>
+                </div>
+
+                <p className="mt-2 text-blue-950 text-xl font-semibold">
+                  {poll.pollId?.title}
+                </p>
 
                 {/* Star Rating */}
                 <div className="mt-4">
-                  <h3 className="text-sm text-gray-500">Rating:</h3>
-                  {renderStarRating(poll.rating)}
+                  <div>
+                    <h3 className="text-sm text-gray-500">Rating:</h3>
+                    {renderStarRating(poll.rating)}
+                  </div>
+                  <p className="text-blue-950">
+                    <span className="text-blue-700 font-semibold ">
+                      comments:
+                    </span>{" "}
+                    <span className="opacity-80">{poll.comment}</span>
+                  </p>
                 </div>
               </div>
             ))}

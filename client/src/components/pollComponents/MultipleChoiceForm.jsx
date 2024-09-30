@@ -74,7 +74,7 @@ const MultipleChoiceForm = () => {
     <div>
       <form
         onSubmit={handleSubmit}
-        className="border p-6 rounded-lg shadow-lg bg-indigo-50"
+        className="border p-6 rounded-lg shadow-lg bg-blue-100"
       >
         <label className="block mb-2 font-semibold text-blue-950">
           Poll Title:
@@ -193,7 +193,7 @@ const MultipleChoiceForm = () => {
         <div className="flex items-center gap-6">
           <button
             type="submit"
-            className="mt-6 bg-blue-950 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition duration-300"
+            className="mt-6 bg-blue-950 text-white py-2 px-4 rounded-lg hover:bg-blue-200 hover:text-blue-950   transition duration-300"
             disabled={loading}
           >
             {loading ? "Creating Poll..." : "Create Poll"}

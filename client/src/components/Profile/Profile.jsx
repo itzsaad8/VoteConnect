@@ -96,7 +96,7 @@ export default function Profile() {
   const displayedPolls = showMyPolls ? myPolls : contributedPolls;
 
   return (
-    <div className="  bg-white  rounded-lg p-6">
+    <div className="px-12 sm:px-24  bg-white  rounded-lg p-6">
       {/* Profile Section */}
       <div className="flex justify-between items-center">
         <div className="flex  gap-3 items-center">
@@ -113,7 +113,7 @@ export default function Profile() {
         </div>
         <Link
           to="/poll"
-          className="bg-indigo-600 text-white px-4 py-2 rounded-lg font-semibold "
+          className="bg-blue-950 text-white hover:bg-blue-200 hover:text-blue-950 px-4 py-2 rounded-lg font-semibold "
         >
           Create New Poll
         </Link>
@@ -121,11 +121,11 @@ export default function Profile() {
 
       {/* Buttons to toggle between "My Polls" and "Contributed Polls" */}
       <div className="mt-6 flex justify-center space-x-0 ">
-        <div className="rounded-full bg-indigo-100">
+        <div className="rounded-full bg-indigo-100 p-1">
           <button
             onClick={() => handleToggle(true)}
             className={`px-4 py-2  font-semibold rounded-full ${
-              showMyPolls ? "bg-indigo-600 text-white" : " text-indigo-600"
+              showMyPolls ? "bg-blue-950 text-white" : " text-blue-950"
             }`}
           >
             My Polls
@@ -133,7 +133,7 @@ export default function Profile() {
           <button
             onClick={() => handleToggle(false)}
             className={`px-4 py-2  font-semibold rounded-full ${
-              !showMyPolls ? "bg-indigo-600 text-white" : " text-indigo-600"
+              !showMyPolls ? "bg-blue-950 text-white" : " text-blue-950"
             }`}
           >
             Contributed Polls
@@ -142,13 +142,13 @@ export default function Profile() {
       </div>
 
       {/* Polls Section */}
-      <div className="mt-8 grid grid-cols-2 sm:grid-cols-3 gap-6">
+      <div className="mt-8 grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6">
         {displayedPolls.map((poll) => (
           <div
             key={poll.id}
             className=" mx-auto bg-white p-6 rounded-lg shadow-md border border-indigo-200"
           >
-            <h2 className="text-xl font-bold text-indigo-600 mb-4">
+            <h2 className="text-xl font-bold text-blue-950 mb-4">
               {poll.desc}
             </h2>
 
@@ -157,8 +157,8 @@ export default function Profile() {
                 <button
                   className={`w-full text-left py-2 px-4 rounded-lg cursor-pointer ${
                     selectedOptions[poll.id] === poll.option_1
-                      ? "bg-indigo-600 text-white"
-                      : "bg-indigo-50 text-indigo-600 hover:bg-indigo-200"
+                      ? "bg-blue-950 text-white"
+                      : "bg-indigo-50 text-blue-950 hover:bg-blue-200"
                   }`}
                   onClick={() => handleOptionClick(poll.id, poll.option_1)}
                 >
@@ -169,8 +169,8 @@ export default function Profile() {
                 <button
                   className={`w-full text-left py-2 px-4 rounded-lg cursor-pointer ${
                     selectedOptions[poll.id] === poll.option_2
-                      ? "bg-indigo-600 text-white"
-                      : "bg-indigo-50 text-indigo-600 hover:bg-indigo-200"
+                      ? "bg-blue-950 text-white"
+                      : "bg-indigo-50 text-blue-950 hover:bg-blue-200"
                   }`}
                   onClick={() => handleOptionClick(poll.id, poll.option_2)}
                 >
@@ -181,8 +181,8 @@ export default function Profile() {
                 <button
                   className={`w-full text-left py-2 px-4 rounded-lg cursor-pointer ${
                     selectedOptions[poll.id] === poll.option_3
-                      ? "bg-indigo-600 text-white"
-                      : "bg-indigo-50 text-indigo-600 hover:bg-indigo-200"
+                      ? "bg-blue-950 text-white"
+                      : "bg-indigo-50 text-blue-950 hover:bg-blue-200"
                   }`}
                   onClick={() => handleOptionClick(poll.id, poll.option_3)}
                 >
@@ -193,8 +193,8 @@ export default function Profile() {
                 <button
                   className={`w-full text-left py-2 px-4 rounded-lg cursor-pointer ${
                     selectedOptions[poll.id] === poll.option_4
-                      ? "bg-indigo-600 text-white"
-                      : "bg-indigo-50 text-indigo-600 hover:bg-indigo-200"
+                      ? "bg-blue-950 text-white"
+                      : "bg-indigo-50 text-blue-950 hover:bg-blue-200"
                   }`}
                   onClick={() => handleOptionClick(poll.id, poll.option_4)}
                 >
