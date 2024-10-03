@@ -12,7 +12,7 @@ export default function AllPublicPolls({ onSelectPoll }) {
           "http://localhost:5000/poll/product/get-all"
         );
         setPolls(response.data.body);
-        // console.log("all", response);
+        console.log("all", response);
       } catch (err) {
         console.log(err);
       }
@@ -55,13 +55,11 @@ export default function AllPublicPolls({ onSelectPoll }) {
                 <div className="flex items-center justify-between">
                   {/* Poll Creator's Name */}
                   <h2 className=" text-blue-950">
-                    {poll.userId?.name || "Unknown"} {/* Example creator */}
+                    {poll.title || "Unknown"} {/* Example creator */}
                   </h2>
 
                   {/* Poll Description and Question */}
-                  <p className=" text-gray-700">
-                    category: {poll.pollId?.category}
-                  </p>
+                  <p className=" text-gray-700">category: {poll.category}</p>
                 </div>
 
                 <p className="mt-2 text-blue-950 text-xl font-semibold">

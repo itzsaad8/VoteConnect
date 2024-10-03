@@ -55,7 +55,7 @@ const Navbar = () => {
             {token ? (
               <div
                 onClick={handleLogout}
-                className="text-white  hover:text-yellow-300 transition duration-200 px-3 py-2 rounded-md font-bold"
+                className="text-white cursor-pointer  hover:text-yellow-300 transition duration-200 px-3 py-2 rounded-md font-bold"
               >
                 LogOut
               </div>
