@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 export default function Profile() {
-  const user = {
-    name: "John Doe",
-    profilePicture: "https://via.placeholder.com/150", // Replace with actual DP URL
-  };
+  const [user, setUser] = useState();
+  // const user = {
+  //   name: "John Doe",
+  //   profilePicture: "https://via.placeholder.com/150", // Replace with actual DP URL
+  // };
 
   const myPolls = [
     {
@@ -94,6 +96,26 @@ export default function Profile() {
   };
 
   const displayedPolls = showMyPolls ? myPolls : contributedPolls;
+  const token = localStorage.getItem("token");
+  useEffect(() => {
+    const user = async () => {
+      try {
+        const responce = await axios.get(
+          "http://localhost:5000/user/by/token",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        setUser(responce.data.body);
+        console.log("profile", responce);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    user();
+  }, []);
 
   return (
     <div className="px-12 sm:px-24  bg-white  rounded-lg p-6">
@@ -102,7 +124,7 @@ export default function Profile() {
         <div className="flex  gap-3 items-center">
           <div className="w-24 h-24 rounded-full overflow-hidden">
             <img
-              src={user.profilePicture}
+              src={`http://localhost:5000/${user?.profile_pic}`}
               alt="Profile"
               className="w-full h-full object-cover"
             />

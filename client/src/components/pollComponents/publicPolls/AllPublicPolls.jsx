@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { FaStar } from "react-icons/fa";
 
 export default function AllPublicPolls({ onSelectPoll }) {
   const [polls, setPolls] = useState([]);
+  const [selectedPollId, setSelectedPollId] = useState(null); // Track selected poll
 
   useEffect(() => {
     const fetchPolls = async () => {
@@ -20,24 +20,9 @@ export default function AllPublicPolls({ onSelectPoll }) {
     fetchPolls();
   }, []);
 
-  // Function to render star rating based on rating value
-  const renderStarRating = (rating) => {
-    const totalStars = 5; // Maximum number of stars
-    return (
-      <div className="flex space-x-1">
-        {[...Array(totalStars)].map((_, index) => {
-          const starValue = index + 1;
-          return (
-            <FaStar
-              key={index}
-              className={
-                starValue <= rating ? "text-yellow-500" : "text-gray-300"
-              }
-            />
-          );
-        })}
-      </div>
-    );
+  const handleSelectPoll = (poll) => {
+    setSelectedPollId(poll._id); // Set the selected poll
+    onSelectPoll(poll); // Call the parent function
   };
 
   return (
@@ -49,34 +34,36 @@ export default function AllPublicPolls({ onSelectPoll }) {
             polls.map((poll) => (
               <div
                 key={poll._id}
-                className="bg-white p-3 rounded-lg shadow-md border border-indigo-200"
-                onClick={() => onSelectPoll(poll)} // Pass the entire poll object to the parent
+                className={`bg-white p-5 rounded-lg shadow-sm border cursor-pointer h-48 transition-all duration-300 ease-in-out
+                  ${
+                    poll._id === selectedPollId
+                      ? "border-blue-700 shadow-blue-950"
+                      : "border-gray-300 hover:shadow-lg"
+                  }`}
+                onClick={() => handleSelectPoll(poll)}
               >
-                <div className="flex items-center justify-between">
-                  {/* Poll Creator's Name */}
-                  <h2 className=" text-blue-950">
-                    {poll.title || "Unknown"} {/* Example creator */}
-                  </h2>
-
-                  {/* Poll Description and Question */}
-                  <p className=" text-gray-700">category: {poll.category}</p>
-                </div>
-
-                <p className="mt-2 text-blue-950 text-xl font-semibold">
-                  {poll.pollId?.title}
+                <p className="text-sm font-medium text-gray-600 mb-2">
+                  Created by -{" "}
+                  <span className="text-blue-700 font-semibold">
+                    {poll?.admin?.name || "Anonymous"}
+                  </span>
                 </p>
 
-                {/* Star Rating */}
-                <div className="mt-4">
-                  <div>
-                    <h3 className="text-sm text-gray-500">Rating:</h3>
-                    {renderStarRating(poll.rating)}
-                  </div>
-                  <p className="text-blue-950">
-                    <span className="text-blue-700 font-semibold ">
-                      comments:
-                    </span>{" "}
-                    <span className="opacity-80">{poll.comment}</span>
+                <h2 className="text-lg font-bold text-gray-800 mb-2">
+                  Poll Title:{" "}
+                  <span className="text-gray-900">{poll.title}</span>
+                </h2>
+
+                <p className="text-sm text-gray-600 italic">
+                  Category:{" "}
+                  <span className="font-medium text-gray-700">
+                    {poll.category}
+                  </span>
+                </p>
+
+                <div className="mt-4 ">
+                  <p className="text-sm text-blue-500  font-medium">
+                    Click to see details
                   </p>
                 </div>
               </div>

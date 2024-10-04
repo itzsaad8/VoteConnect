@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
+  const [user, setUser] = useState();
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -20,6 +22,25 @@ const Navbar = () => {
   const handleLogout = () => {
     localStorage.removeItem("token");
   };
+  useEffect(() => {
+    const user = async () => {
+      try {
+        const responce = await axios.get(
+          "http://localhost:5000/user/by/token",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        setUser(responce.data.body);
+        console.log("user", responce);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    user();
+  }, []);
 
   return (
     <nav className="bg-blue-950 shadow-md py-2">
@@ -67,14 +88,22 @@ const Navbar = () => {
                 SignUp
               </Link>
             )}
-            <Link
-              to="/profile"
-              className="text-white   transition duration-200  py-2 rounded-md font-bold flex items-center gap-3"
-            >
-              <span className="hover:text-yellow-300">Profile</span>
-              <p className="rounded-full h-12 w-12 bg-white" />
-              <p></p>
-            </Link>
+            {user && (
+              <Link
+                to="/profile"
+                className="text-white   transition duration-200  py-2 rounded-md font-bold flex items-center gap-3"
+              >
+                <span className="hover:text-yellow-300">{user.name}</span>
+                <img
+                  className="h-12 w-12 rounded-full "
+                  src={`http://localhost:5000/${user?.profile_pic}`}
+                  alt=""
+                />
+
+                {/* <p className="rounded-full h-12 w-12 bg-white" /> */}
+                <p></p>
+              </Link>
+            )}
           </div>
 
           {/* Mobile Menu Button */}

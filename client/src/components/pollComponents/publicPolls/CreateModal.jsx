@@ -6,6 +6,7 @@ export default function CreateModal() {
   const [formData, setFormData] = useState({
     title: "",
     category: "",
+    description: "",
     showUserDetails: "Yes", // default to Yes
   });
 
@@ -42,12 +43,14 @@ export default function CreateModal() {
       {close && (
         <dialog id="my_modal_4" className="modal">
           <div className="modal-box w-11/12 max-w-5xl">
-            <h3 className="font-bold text-lg">Create New Poll</h3>
+            <h3 className="text-center font-bold text-xl text-blue-950">
+              Create Public Poll
+            </h3>
             <form onSubmit={handleSubmit} className="py-4 space-y-4">
               {/* Title Input */}
               <div>
                 <label
-                  className="block text-gray-700 font-bold mb-2"
+                  className="block text-gray-700 font-bold mb-2 "
                   htmlFor="title"
                 >
                   Poll Title:
@@ -59,7 +62,26 @@ export default function CreateModal() {
                   value={formData.title}
                   onChange={handleInputChange}
                   required
-                  className="input input-bordered w-full"
+                  className="input input-bordered w-full outline-none"
+                  placeholder="Enter poll title"
+                />
+              </div>
+              {/* Desc Input */}
+              <div>
+                <label
+                  className="block text-gray-700 font-bold mb-2"
+                  htmlFor="title"
+                >
+                  Poll Description:
+                </label>
+                <input
+                  type="text"
+                  id="description"
+                  name="description"
+                  value={formData.description}
+                  onChange={handleInputChange}
+                  required
+                  className="input input-bordered w-full outline-none"
                   placeholder="Enter poll title"
                 />
               </div>
@@ -79,7 +101,7 @@ export default function CreateModal() {
                   value={formData.category}
                   onChange={handleInputChange}
                   required
-                  className="input input-bordered w-full"
+                  className="input input-bordered w-full "
                   placeholder="Enter category"
                 />
               </div>
@@ -108,12 +130,14 @@ export default function CreateModal() {
               <div className="modal-action">
                 <button
                   type="submit"
-                  className="p-2 bg-blue-950 hover:bg-blue-100 hover:text-blue-950 text-white rounded-lg"
+                  className="py-2 px-5 bg-blue-950 hover:bg-blue-100 hover:text-blue-950 text-white rounded-lg"
                 >
                   Submit Poll
                 </button>
                 <form method="dialog">
-                  <button className="btn">Close</button>
+                  <button className="btn hover:bg-red-600 hover:text-white">
+                    Cancel
+                  </button>
                 </form>
               </div>
             </form>

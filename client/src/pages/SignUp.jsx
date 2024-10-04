@@ -2,8 +2,11 @@ import React, { useState } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { FaPlus } from "react-icons/fa6";
 
 export default function SignUp() {
+  const [image, setImage] = useState(null); // State to store image file
+  const [imageFile, setImageFile] = useState(null); // State to store the actual image file
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -11,6 +14,19 @@ export default function SignUp() {
   });
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
+
+  const handleImageUpload = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const imageUrl = URL.createObjectURL(file);
+      setImage(imageUrl); // Set the preview image
+      setImageFile(file); // Set the actual file for FormData
+    }
+  };
+
+  const handleClick = () => {
+    document.getElementById("imageUpload").click();
+  };
 
   // Handle input change
   const handleChange = (e) => {
@@ -21,21 +37,36 @@ export default function SignUp() {
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Create a FormData object
+    const data = new FormData();
+    data.append("name", formData.name);
+    data.append("email", formData.email);
+    data.append("password", formData.password);
+
+    if (imageFile) {
+      data.append("image", imageFile); // Append image file if present
+    }
+
     try {
       const response = await axios.post(
         "http://localhost:5000/user/signup",
-        formData
+        data,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data", // Specify multipart for FormData
+          },
+        }
       );
       console.log(response);
       localStorage.setItem("token", response.data.token);
       toast.success("Signup successful!");
       setSuccess("Signup successful!");
       setError("");
-      console.log("Response:", response.data); // Handle response accordingly
     } catch (err) {
       setError("Signup failed. Please try again.");
       setSuccess("");
-      console.error("Error:", err); // Handle error accordingly
+      console.error("Error:", err);
     }
   };
 
@@ -45,9 +76,36 @@ export default function SignUp() {
         <h2 className="text-2xl font-bold text-center text-indigo-600 mb-6">
           Sign Up
         </h2>
-        {success && <div className="mb-4 text-green-600">{success} </div>}
+        {success && <div className="mb-4 text-green-600">{success}</div>}
         {error && <div className="mb-4 text-red-600">{error}</div>}
         <form onSubmit={handleSubmit}>
+          <div className="flex items-center justify-center mb-4">
+            {/* Image upload div */}
+            <div
+              className="flex items-center justify-center p-1 h-16 w-16 border border-dashed rounded-full bg-slate-400 cursor-pointer"
+              onClick={handleClick}
+            >
+              {image ? (
+                <img
+                  required
+                  src={image}
+                  alt="Uploaded"
+                  className="rounded-full h-full w-full object-cover"
+                />
+              ) : (
+                <FaPlus className="p-2 h-10 w-10 text-white" />
+              )}
+            </div>
+
+            {/* Hidden file input */}
+            <input
+              id="imageUpload"
+              type="file"
+              accept="image/*"
+              style={{ display: "none" }}
+              onChange={handleImageUpload}
+            />
+          </div>
           <div className="mb-4">
             <label className="block text-sm font-semibold mb-2" htmlFor="name">
               Name
