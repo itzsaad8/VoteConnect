@@ -16,10 +16,10 @@ export default function SinglePublicPoll({ poll }) {
   const [singleM, setSingleM] = useState(null);
   const [textValue, setTextValue] = useState("");
   const [rating, setRating] = useState(0);
-  const [likeStates, setLikeStates] = useState({}); // Track like/dislike per comment
+  const [likeStates, setLikeStates] = useState({});
 
   const handleRatingClick = (index) => {
-    setRating(index); // Set the rating value when a star is clicked
+    setRating(index);
   };
 
   const handleLike = (reviewId) => {
@@ -46,12 +46,11 @@ export default function SinglePublicPoll({ poll }) {
 
   const token = localStorage.getItem("token");
 
-  // If poll is not provided, we still return a default state, but hooks are still rendered
   const id = poll ? poll._id : null;
 
   useEffect(() => {
     const fetchPollDetails = async () => {
-      if (!id) return; // Avoid making the request if id is not present
+      if (!id) return;
 
       try {
         const responce = await axios.get(
@@ -207,7 +206,6 @@ export default function SinglePublicPoll({ poll }) {
                     </div>
                   </div>
                 </div>
-                {/* Display review rating as stars */}
                 <div className="flex items-center gap-[2px]">
                   {[1, 2, 3, 4, 5].map((star) => (
                     <span key={star}>

@@ -6,7 +6,7 @@ export default function UserAllPolls() {
   const navigate = useNavigate();
   const [mcqsPolls, setMcqsPolls] = useState([]);
   const [yonPolls, setYonPolls] = useState([]);
-  const [showMcqsPolls, setShowMcqsPolls] = useState(true); // To toggle between MCQs and YON Polls
+  const [showMcqsPolls, setShowMcqsPolls] = useState(true);
   const token = localStorage.getItem("token");
 
   const handleNavigateToPoll = (pollId) => {
@@ -37,7 +37,6 @@ export default function UserAllPolls() {
     data();
   }, []);
 
-  // Handle toggle between MCQs and YON polls
   const handleToggle = (type) => {
     if (type === "mcqs") {
       setShowMcqsPolls(true);

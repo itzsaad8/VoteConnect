@@ -15,6 +15,7 @@ import Profile from "./components/Profile/Profile";
 import YesNoPoll from "./components/pollComponents/YesNoPolls/YesNoPoll";
 import SingleYonResult from "./components/pollComponents/YesNoPolls/SingleYonResult";
 import PublicPollsPage from "./pages/publicPollpage/PublicPollsPage";
+import Login from "./pages/LogIn";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
       {
         path: "/sign-up",
         element: <SignUp />,
+      },
+      {
+        path: "/login",
+        element: <Login />,
       },
       {
         path: "/profile",

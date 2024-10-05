@@ -46,10 +46,8 @@ const Navbar = () => {
     <nav className="bg-blue-950 shadow-md py-2">
       <div className=" mx-auto px-12 sm:px-16 lg:px-24">
         <div className="flex justify-between items-center h-16">
-          {/* Website Logo/Name */}
           <div className="text-2xl font-bold text-white">VoteConnect</div>
 
-          {/* Navbar Links for Desktop */}
           <div className="hidden md:flex items-center space-x-8">
             <Link className="text-white  hover:text-yellow-300 transition duration-200 px-3 py-2 rounded-md font-bold">
               Home
@@ -100,7 +98,6 @@ const Navbar = () => {
                   alt=""
                 />
 
-                {/* <p className="rounded-full h-12 w-12 bg-white" /> */}
                 <p></p>
               </Link>
             )}

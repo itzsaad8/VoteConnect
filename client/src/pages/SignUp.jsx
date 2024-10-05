@@ -3,10 +3,13 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { FaPlus } from "react-icons/fa6";
+import { useNavigate } from "react-router-dom";
 
 export default function SignUp() {
-  const [image, setImage] = useState(null); // State to store image file
-  const [imageFile, setImageFile] = useState(null); // State to store the actual image file
+  const navigate = useNavigate();
+
+  const [image, setImage] = useState(null);
+  const [imageFile, setImageFile] = useState(null);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -19,8 +22,8 @@ export default function SignUp() {
     const file = e.target.files[0];
     if (file) {
       const imageUrl = URL.createObjectURL(file);
-      setImage(imageUrl); // Set the preview image
-      setImageFile(file); // Set the actual file for FormData
+      setImage(imageUrl);
+      setImageFile(file);
     }
   };
 
@@ -28,24 +31,21 @@ export default function SignUp() {
     document.getElementById("imageUpload").click();
   };
 
-  // Handle input change
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
-  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Create a FormData object
     const data = new FormData();
     data.append("name", formData.name);
     data.append("email", formData.email);
     data.append("password", formData.password);
 
     if (imageFile) {
-      data.append("image", imageFile); // Append image file if present
+      data.append("image", imageFile);
     }
 
     try {
@@ -54,7 +54,7 @@ export default function SignUp() {
         data,
         {
           headers: {
-            "Content-Type": "multipart/form-data", // Specify multipart for FormData
+            "Content-Type": "multipart/form-data",
           },
         }
       );
@@ -62,6 +62,8 @@ export default function SignUp() {
       localStorage.setItem("token", response.data.token);
       toast.success("Signup successful!");
       setSuccess("Signup successful!");
+      navigate(`/login`);
+
       setError("");
     } catch (err) {
       setError("Signup failed. Please try again.");
