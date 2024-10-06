@@ -75,7 +75,7 @@ export default function SignUp() {
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
       <div className="w-full max-w-md bg-white rounded-lg shadow-md p-8">
-        <h2 className="text-2xl font-bold text-center text-indigo-600 mb-6">
+        <h2 className="text-2xl font-bold text-center text-blue-950 mb-6">
           Sign Up
         </h2>
         {success && <div className="mb-4 text-green-600">{success}</div>}
@@ -119,7 +119,7 @@ export default function SignUp() {
               value={formData.name}
               onChange={handleChange}
               required
-              className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600"
+              className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
               placeholder="Enter your name"
             />
           </div>
@@ -134,7 +134,7 @@ export default function SignUp() {
               value={formData.email}
               onChange={handleChange}
               required
-              className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600"
+              className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
               placeholder="Enter your email"
             />
           </div>
@@ -152,20 +152,20 @@ export default function SignUp() {
               value={formData.password}
               onChange={handleChange}
               required
-              className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600"
+              className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
               placeholder="Enter your password"
             />
           </div>
           <button
             type="submit"
-            className="w-full py-3 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 transition duration-300"
+            className="w-full py-3 bg-blue-950 text-white font-semibold rounded-lg hover:bg-blue-200 hover:text-blue-950 transition duration-300"
           >
             Sign Up
           </button>
         </form>
         <p className="text-center text-sm text-gray-600 mt-4">
           Already have an account?{" "}
-          <a href="/login" className="text-indigo-600 hover:underline">
+          <a href="/login" className="text-blue-950 hover:underline">
             Log In
           </a>
         </p>

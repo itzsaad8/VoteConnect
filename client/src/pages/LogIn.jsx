@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -29,6 +31,7 @@ export default function Login() {
       toast.success("Login successful!");
       setSuccess("Login successful!");
       setError("");
+      navigate(`/`);
     } catch (err) {
       setError("Login failed. Please check your credentials and try again.");
       setSuccess("");
@@ -39,7 +42,7 @@ export default function Login() {
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
       <div className="w-full max-w-md bg-white rounded-lg shadow-md p-8">
-        <h2 className="text-2xl font-bold text-center text-indigo-600 mb-6">
+        <h2 className="text-2xl font-bold text-center text-blue-950 mb-6">
           Log In
         </h2>
         {success && <div className="mb-4 text-green-600">{success}</div>}
@@ -56,7 +59,7 @@ export default function Login() {
               value={formData.email}
               onChange={handleChange}
               required
-              className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600"
+              className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
               placeholder="Enter your email"
             />
           </div>
@@ -74,20 +77,20 @@ export default function Login() {
               value={formData.password}
               onChange={handleChange}
               required
-              className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600"
+              className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
               placeholder="Enter your password"
             />
           </div>
           <button
             type="submit"
-            className="w-full py-3 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 transition duration-300"
+            className="w-full py-3 bg-blue-950 text-white font-semibold rounded-lg hover:bg-blue-200 hover:text-blue-950 transition duration-300"
           >
             Log In
           </button>
         </form>
         <p className="text-center text-sm text-gray-600 mt-4">
           Don't have an account?{" "}
-          <a href="/signup" className="text-indigo-600 hover:underline">
+          <a href="/sign-up" className="text-blue-950 hover:underline">
             Sign Up
           </a>
         </p>

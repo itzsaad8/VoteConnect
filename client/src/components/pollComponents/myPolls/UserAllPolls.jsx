@@ -49,7 +49,7 @@ export default function UserAllPolls() {
     <>
       {/* Buttons to toggle between different types of polls */}
       <div className="mt-6 flex justify-center space-x-0 ">
-        <div className="rounded-full bg-indigo-100 p-1">
+        <div className="rounded-full bg-blue-100 p-1">
           <button
             onClick={() => handleToggle("mcqs")}
             className={`px-4 py-2 font-semibold rounded-full ${
@@ -116,17 +116,17 @@ export default function UserAllPolls() {
             yonPolls.map((poll) => (
               <div
                 key={poll._id}
-                className="w-1/3  bg-white p-6 rounded-lg shadow-md border border-indigo-200"
+                className="w-1/3  bg-white p-6 rounded-lg shadow-md border border-blue-200"
                 onClick={() => handleNavigateToYonPoll(poll._id)}
               >
                 <h2 className="text-xl font-bold text-blue-950 mb-4">
                   {poll.title}
                 </h2>
                 <div className="flex justify-around">
-                  <button className="w-1/3 py-2 px-4 text-center rounded-lg cursor-pointer text-blue-950 bg-indigo-100">
+                  <button className="w-1/3 py-2 px-4 text-center rounded-lg cursor-pointer text-blue-950 bg-blue-100">
                     Yes
                   </button>
-                  <button className="w-1/3 py-2 px-4 text-center rounded-lg cursor-pointer text-blue-950 bg-indigo-100">
+                  <button className="w-1/3 py-2 px-4 text-center rounded-lg cursor-pointer text-blue-950 bg-blue-100">
                     No
                   </button>
                 </div>
