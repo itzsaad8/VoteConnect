@@ -11,14 +11,14 @@ const Navbar = () => {
     setIsOpen(!isOpen);
   };
 
-  const links = [
-    { name: "Home", href: "#home" },
-    { name: "Poll", href: "/poll" },
-    { name: "Blogs", href: "#blogs" },
-    { name: "About", href: "#about" },
-    { name: "Contact", href: "#contact" },
-    { name: "Login/SignUp", href: "#login" },
-  ];
+  // const links = [
+  //   { name: "Home", href: "#home" },
+  //   { name: "Poll", href: "/poll" },
+  //   { name: "Blogs", href: "#blogs" },
+  //   { name: "About", href: "#about" },
+  //   { name: "Contact", href: "#contact" },
+  //   { name: "Login/SignUp", href: "#login" },
+  // ];
   const token = localStorage.getItem("token");
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -36,7 +36,7 @@ const Navbar = () => {
           }
         );
         setUser(responce.data.body);
-        console.log("user", responce);
+        // console.log("user", responce);
       } catch (error) {
         console.log(error);
       }
@@ -53,6 +53,12 @@ const Navbar = () => {
           <div className="hidden md:flex items-center space-x-8">
             <Link className="text-white  hover:text-yellow-300 transition duration-200 px-3 py-2 rounded-md font-bold">
               Home
+            </Link>
+            <Link
+              to="/election"
+              className="text-white  hover:text-yellow-300 transition duration-200 px-3 py-2 rounded-md font-bold"
+            >
+              Election
             </Link>
             <Link
               to="/public-polls"
@@ -133,7 +139,7 @@ const Navbar = () => {
       </div>
 
       {/* Mobile Menu */}
-      {isOpen && (
+      {/* {isOpen && (
         <div className="md:hidden bg-white rounded-md shadow-md mt-2">
           <div className="flex flex-col p-4">
             {links.map((link) => (
@@ -148,7 +154,7 @@ const Navbar = () => {
             ))}
           </div>
         </div>
-      )}
+      )} */}
     </nav>
   );
 };
