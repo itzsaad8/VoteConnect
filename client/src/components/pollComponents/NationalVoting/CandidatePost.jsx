@@ -54,14 +54,6 @@ export default function CandidatePost() {
 
   return (
     <>
-      {/* Button to open the modal */}
-      <button
-        className="btn"
-        onClick={() => document.getElementById("my_modal_4").showModal()}
-      >
-        Open Modal
-      </button>
-
       {/* Modal for Candidate Post */}
       <dialog id="my_modal_4" className="modal">
         <div className="modal-box w-11/12 max-w-5xl">

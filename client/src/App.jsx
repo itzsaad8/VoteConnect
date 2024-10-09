@@ -17,6 +17,7 @@ import SingleYonResult from "./components/pollComponents/YesNoPolls/SingleYonRes
 import PublicPollsPage from "./pages/publicPollpage/PublicPollsPage";
 import Login from "./pages/LogIn";
 import Election from "./components/pollComponents/NationalVoting/Election";
+import ElectionResult from "./components/pollComponents/NationalVoting/ElectionResult";
 
 const router = createBrowserRouter([
   {
@@ -87,6 +88,10 @@ const router = createBrowserRouter([
       {
         path: "/election",
         element: <Election />,
+      },
+      {
+        path: "/election-result",
+        element: <ElectionResult />,
       },
     ],
   },
