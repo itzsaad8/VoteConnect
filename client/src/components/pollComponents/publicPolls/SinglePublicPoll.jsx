@@ -1,40 +1,36 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { FaRegStar, FaStar } from "react-icons/fa";
-import { BiDislike } from "react-icons/bi";
-import { BiSolidDislike } from "react-icons/bi";
-import {
-  AiOutlineLike,
-  AiFillLike,
-  AiOutlineDislike,
-  AiFillDislike,
-} from "react-icons/ai";
-
+import { BiDislike, BiSolidDislike } from "react-icons/bi";
+import { AiOutlineLike, AiFillLike, AiOutlineDislike } from "react-icons/ai";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { HiMiniArrowRightCircle } from "react-icons/hi2";
+import { HiOutlineArrowSmallDown } from "react-icons/hi2";
 export default function SinglePublicPoll({ poll }) {
-  console.log("poll", poll);
   const [single, setSingle] = useState(null);
   const [singleM, setSingleM] = useState(null);
   const [textValue, setTextValue] = useState("");
   const [rating, setRating] = useState(0);
   const [likeStates, setLikeStates] = useState({});
+  const [replyInputVisible, setReplyInputVisible] = useState({}); // Track reply input visibility
+  const [replyText, setReplyText] = useState({}); // Store reply text for each comment
+  const [reply, setReply] = useState();
+  const [commentId, setCommentId] = useState()
+  const [totalReplies, setTotalReplies] = useState([])
+  const [showReplies, setshowReplies] = useState(false)
+  const handleRatingClick = (index) => setRating(index);
 
-  const handleRatingClick = (index) => {
-    setRating(index);
-  };
-
-  const handleLike = (reviewId) => {
+  const handleLike = (reviewId) =>
     setLikeStates((prevState) => ({
       ...prevState,
       [reviewId]: {
         liked: !prevState[reviewId]?.liked,
-        disliked: prevState[reviewId]?.disliked
-          ? false
-          : prevState[reviewId]?.disliked,
+        disliked: prevState[reviewId]?.disliked ? false : prevState[reviewId]?.disliked,
       },
     }));
-  };
 
-  const handleDisLike = (reviewId) => {
+  const handleDisLike = (reviewId) =>
     setLikeStates((prevState) => ({
       ...prevState,
       [reviewId]: {
@@ -42,57 +38,81 @@ export default function SinglePublicPoll({ poll }) {
         liked: prevState[reviewId]?.liked ? false : prevState[reviewId]?.liked,
       },
     }));
+
+  const handleReplyToggle = (reviewId) => {
+    setReplyInputVisible((prevState) => ({
+      ...prevState,
+      [reviewId]: !prevState[reviewId],
+    }));
+  };
+
+  const handleReplyChange = (reviewId, value) => {
+    // console.log(reviewId , value)
+    setReply(value)
+    setCommentId(reviewId)
+    setReplyText((prevState) => ({
+      ...prevState,
+      [reviewId]: value,
+    }));
   };
 
   const token = localStorage.getItem("token");
-
   const id = poll ? poll._id : null;
 
+
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const payload = { review: rating, comment: textValue, pollId: id };
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/poll/product/vote",
+        payload,
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      toast.success("Added Your Comment");
+            console.log(response);
+    } catch (error) {
+      console.error("Error posting data", error);
+    }
+  };
+  const handleSubmitReplay = async (e) => {
+    e.preventDefault();
+    const payload = { commentId: commentId, reply: reply };
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/poll/product/comment",
+        payload,
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      toast.success("Added Your Comment");
+      console.log('the reply', response);
+    } catch (error) {
+      console.error("Error posting data", error);
+    }
+    // console.log(replyText.reviewId)
+  };
   useEffect(() => {
     const fetchPollDetails = async () => {
       if (!id) return;
-
       try {
-        const responce = await axios.get(
+        const response = await axios.get(
           `http://localhost:5000/poll/product/get-details-by-id/${id}`
         );
-        console.log("all details", responce);
-        setSingle(responce.data.body);
-        setSingleM(responce.data.body.polls);
+        setSingle(response.data.body);
+        setSingleM(response.data.body.polls);
+        setTotalReplies(response.data.body.polls.replies)
+        console.log(response.data.body.polls[0].replies)
       } catch (error) {
         console.error("Error fetching poll details", error);
       }
     };
     fetchPollDetails();
-  }, [id]);
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    const payload = {
-      review: rating,
-      comment: textValue,
-      pollId: id,
-    };
-
-    try {
-      const response = await axios.post(
-        "http://localhost:5000/poll/product/vote",
-        payload,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      console.log(response);
-    } catch (error) {
-      console.error("Error posting data", error);
-    }
-  };
+  }, [id ]);
 
   return (
     <div className="max-w-7xl mx-auto mt-6">
+            <ToastContainer /> {/* Add this line */}
       <h1 className="text-3xl font-bold text-blue-950 mb-6">Details</h1>
       {!poll ? (
         <h1 className="text-2xl font-bold text-gray-500">No poll selected</h1>
@@ -114,9 +134,8 @@ export default function SinglePublicPoll({ poll }) {
             <p className="text-gray-700">Category: {poll.category}</p>
           </div>
           <div className="flex flex-col gap-3 my-2">
-            <h1 className="mt-2 text-3xl font-semibold">
-              <span className="text-blue-950">Title: </span>
-              <span className="text-blue-400">{poll.title}</span>
+            <h1 className="mt-2 text-2xl font-semibold">
+              <span className="text-blue-950">{poll.title}</span>
             </h1>
             <p className="mt-2 text-gray-600">
               <span className="font-bold">Description: </span>
@@ -126,25 +145,18 @@ export default function SinglePublicPoll({ poll }) {
 
           <div className="my-4 flex flex-col gap-3 px-3 py-6 border border-gray-200 rounded-lg shadow-xl">
             <input
-              className="w-full p-2 bg-slate-300 rounded-lg outline-none"
+              className="w-full p-2 bg-blue-900 text-white rounded-lg outline-none"
               type="text"
               value={textValue}
               required
               onChange={(e) => setTextValue(e.target.value)}
               placeholder="Add review"
             />
-            {/* Star Rating */}
             <div className="flex gap-1">
               {[1, 2, 3, 4, 5].map((star) => (
-                <Star
-                  required
-                  key={star}
-                  filled={star <= rating}
-                  onClick={() => handleRatingClick(star)}
-                />
+                <Star key={star} filled={star <= rating} onClick={() => handleRatingClick(star)} />
               ))}
             </div>
-
             <button
               className="py-2 rounded-lg bg-blue-950 text-white hover:bg-blue-200 hover:text-blue-950"
               onClick={handleSubmit}
@@ -155,16 +167,13 @@ export default function SinglePublicPoll({ poll }) {
 
           {single && (
             <div className="mt-2 ">
-              <span className="font-semibold"> Total reviews:</span>{" "}
-              <span>{single?.totalReviews}</span>
+              <span className="font-semibold">Total reviews:</span> <span>{single?.totalReviews}</span>
             </div>
           )}
+
           {singleM &&
             singleM.map((review) => (
-              <div
-                key={review._id}
-                className="py-2 flex justify-between items-start"
-              >
+              <div key={review._id} className="py-2 flex justify-between items-start">
                 <div className="flex gap-2">
                   <div className="h-8 w-8 rounded-full overflow-hidden">
                     <img
@@ -173,13 +182,10 @@ export default function SinglePublicPoll({ poll }) {
                       className="w-full h-full object-cover"
                     />
                   </div>
-
                   <div className="flex flex-col gap-1 ">
                     <p className="text-sm">
                       {review.userId.name}{" "}
-                      <span className="text-[10px] opacity-80">
-                        12 minutes ago
-                      </span>
+                      <span className="text-[10px] opacity-80">12 minutes ago</span>
                     </p>
                     <p className="font-semibold ">{review.comment}</p>
                     <div className="flex items-center gap-3">
@@ -187,38 +193,73 @@ export default function SinglePublicPoll({ poll }) {
                         {likeStates[review._id]?.liked ? (
                           <AiFillLike onClick={() => handleLike(review._id)} />
                         ) : (
-                          <AiOutlineLike
-                            onClick={() => handleLike(review._id)}
-                          />
+                          <AiOutlineLike onClick={() => handleLike(review._id)} />
                         )}
                         {likeStates[review._id]?.disliked ? (
-                          <BiSolidDislike
-                            onClick={() => handleDisLike(review._id)}
-                          />
+                          <BiSolidDislike onClick={() => handleDisLike(review._id)} />
                         ) : (
-                          <BiDislike
-                            onClick={() => handleDisLike(review._id)}
-                          />
+                          <BiDislike onClick={() => handleDisLike(review._id)} />
                         )}
                       </div>
-
-                      <p className="text-[12px] font-semibold">Reply</p>
+                      <br />
+                      <p
+                        className="text-[12px] font-semibold cursor-pointer"
+                        onClick={() => handleReplyToggle(review._id)}
+                      >
+                        Reply
+                      </p>
                     </div>
+                    {
+                   review.replies?.length>0 &&
+                      <div
+                        className="cursor-pointer "
+                        onClick={(() => setshowReplies(!showReplies))}
+                      >
+                        Replies
+                        <br />
+                        <div className="flex" >
+                          <HiOutlineArrowSmallDown 
+                          size={20}
+                           className="font-bold text-blue-950"
+                           onClick={(() => setshowReplies(!showReplies))}
+                           />
+                          <div className="bg-blue-950 w-6 h-6 rounded-full text-white text-center">
+                            {review.replies?.length}
+                          </div>
+                        </div>
+                      </div>
+                    }
+                    {
+                      showReplies &&
+                      <div>
+                        {review.replies?.map((e) => (
+                        <>
+                          
+                          <div className="flex gap-2"> <div className="w-6 h-6 flex justify-center items-center bg-red-950 text-white rounded-full "> {e.name?.split("")[0] || "A"} </div> {e.reply}</div>
+                        </>
+                        )
+                        )}
+                      </div>
+                    }
+                    {replyInputVisible[review._id] && (
+                      <>
+                        <div className="flex items-center">
+                          <input
+                            className="mt-2 p-2 w-full outline-none border-0 border-b-2 border-black"
+                            type="text"
+                            value={replyText[review._id] || ""}
+                            onChange={(e) => handleReplyChange(review._id, e.target.value)}
+                            placeholder="Write a reply..."
+                          />
+                          <HiMiniArrowRightCircle
+                            size={30}
+                            className="mt-2 -ml-4 "
+                            onClick={handleSubmitReplay}
+                          />
+                        </div>
+                      </>
+                    )}
                   </div>
-                </div>
-                <div className="flex items-center gap-[2px]">
-                  {[1, 2, 3, 4, 5].map((star) => (
-                    <span key={star}>
-                      {star <= review.review ? (
-                        <FaStar className="text-yellow-400 text-[10px]" />
-                      ) : (
-                        <FaRegStar className="text-yellow-400 text-[10px]" />
-                      )}
-                    </span>
-                  ))}
-                  <span className="text-[10px] opacity-80">
-                    ({review.review})
-                  </span>
                 </div>
               </div>
             ))}
@@ -230,10 +271,6 @@ export default function SinglePublicPoll({ poll }) {
 
 const Star = ({ filled, onClick }) => (
   <>
-    {filled ? (
-      <FaStar className="text-yellow-400 text-xl" onClick={onClick} />
-    ) : (
-      <FaRegStar className="text-yellow-400 text-xl" onClick={onClick} />
-    )}
+    {filled ? <FaStar className="text-yellow-400 text-xl" onClick={onClick} /> : <FaRegStar className="text-yellow-400 text-xl" onClick={onClick} />}
   </>
 );

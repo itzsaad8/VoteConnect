@@ -4,6 +4,7 @@ import WhyChooseUs from "../../components/homeComponents/WhyChooseUs";
 import Instructions from "../../components/homeComponents/Instructions";
 import Stats from "../../components/homeComponents/Stats";
 import Features from "../../components/homeComponents/Features";
+import Footer from "../../components/homeComponents/Footer";
 
 export default function HomePage() {
   return (
@@ -13,6 +14,7 @@ export default function HomePage() {
       <Instructions />
       <Stats />
       <Features />
+      <Footer  />
     </div>
   );
 }
