@@ -3,8 +3,8 @@ import PollOptions from "./PollOptions";
 
 const OpenEndedForm = () => {
   return (
-    <form className="border p-6 rounded-lg shadow-lg bg-indigo-50">
-      <label className="block mb-2 font-semibold text-indigo-600">
+    <form className="border p-6 rounded-lg shadow-lg bg-blue-50">
+      <label className="block mb-2 font-semibold text-blue-950">
         Poll Description:
         <textarea
           className="border p-2 w-full rounded-lg mt-1 focus:outline-none focus:ring-2 focus:ring-indigo-600 bg-white"
@@ -12,7 +12,7 @@ const OpenEndedForm = () => {
         />
       </label>
 
-      <label className="block mb-2 font-semibold text-indigo-600">
+      <label className="block mb-2 font-semibold text-blue-950">
         Poll Question:
         <input
           type="text"
@@ -21,7 +21,7 @@ const OpenEndedForm = () => {
         />
       </label>
 
-      <label className="block mb-2 font-semibold text-indigo-600">
+      <label className="block mb-2 font-semibold text-blue-950">
         Answer:
         <textarea
           className="border p-2 w-full rounded-lg mt-1 focus:outline-none focus:ring-2 focus:ring-indigo-600 bg-white"

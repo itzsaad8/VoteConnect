@@ -13,7 +13,7 @@ export default function PublicPolls() {
 
   return (
     <>
-      <div className="px-16 md:px-20 lg:px-28 xl:px-40 mt-6">
+      <div className="px-16 md:px-20 lg:px-28 xl:px-20 mt-6">
         <div className="flex justify-between">
           <div className="w-3/4 flex items-center gap-2">
             <input
